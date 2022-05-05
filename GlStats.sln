@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.Core", "src\Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7831C74F-3F4A-4E5F-B541-8256B55A4A49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.Infrastructure", "GlStats.Infrastructure\GlStats.Infrastructure.csproj", "{5099BE45-EB02-4435-8B6B-9AB33F8D22F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.Infrastructure", "src\Services\GlStats.Infrastructure\GlStats.Infrastructure.csproj", "{5099BE45-EB02-4435-8B6B-9AB33F8D22F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.Domain", "GlStats.Domain\GlStats.Domain.csproj", "{B232585E-29B4-4408-8581-9CE9D7543C57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.Domain", "src\Services\GlStats.Domain\GlStats.Domain.csproj", "{B232585E-29B4-4408-8581-9CE9D7543C57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
