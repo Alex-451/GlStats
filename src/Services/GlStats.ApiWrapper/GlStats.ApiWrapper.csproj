@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Boundaries\Infrastructure\" />
-    <Folder Include="Boundaries\Providers\" />
-    <Folder Include="Entities\Exceptions\" />
+    <ProjectReference Include="..\GlStats.Core\GlStats.Core.csproj" />
   </ItemGroup>
 
 </Project>
