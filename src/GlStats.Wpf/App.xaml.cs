@@ -9,8 +9,6 @@ using GlStats.Core.Boundaries.Providers;
 using GlStats.Core.UseCases;
 using GlStats.Infrastructure;
 using GlStats.Infrastructure.Providers;
-using GlStats.Wpf.Dialogs.ViewModels;
-using GlStats.Wpf.Dialogs.Views;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,12 +52,6 @@ public partial class App : PrismApplication
         #region Presenters
 
        
-
-        #endregion
-
-        #region Dialogs
-
-        containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
 
         #endregion
     }

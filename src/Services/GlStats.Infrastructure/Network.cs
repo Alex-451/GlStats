@@ -17,14 +17,9 @@ public class Network : INetwork
     public async Task<string> PostAsync(string url, string apiKey, string body)
     {
         _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-        if (!_client.DefaultRequestHeaders.Contains("Authorization"))
-        {
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-        }
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
         var response = await _client.PostAsync(url, new StringContent(body, Encoding.UTF8, "application/json"));
-
         return await response.Content.ReadAsStringAsync();
     }
 }

@@ -9,7 +9,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Dialogs\ViewModels\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Presenters\" />
 	  <Folder Include="ViewModels\" />
