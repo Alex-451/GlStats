@@ -15,13 +15,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DryIoc.Microsoft.DependencyInjection.Extension" Version="1.0.0.2" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 	  <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Services\GlStats.Core\GlStats.Core.csproj" />
+	  <ProjectReference Include="..\Services\GlStats.DataAccess\GlStats.DataAccess.csproj" />
 	  <ProjectReference Include="..\Services\GlStats.Infrastructure\GlStats.Infrastructure.csproj" />
 	</ItemGroup>
 

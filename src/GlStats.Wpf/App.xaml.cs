@@ -1,16 +1,18 @@
 ﻿using System.Net.Http;
-using DryIoc;
-using DryIoc.Microsoft.DependencyInjection.Extension;
 using GlStats.ApiWrapper;
 using GlStats.Core;
 using GlStats.Core.Boundaries.GetCurrentUser;
 using GlStats.Core.Boundaries.Infrastructure;
 using GlStats.Core.Boundaries.Providers;
 using GlStats.Core.UseCases;
+using GlStats.DataAccess;
+using GlStats.DataAccess.Repositories;
+using GlStats.DataAccess.Repositories.Implementations;
 using GlStats.Infrastructure;
 using GlStats.Infrastructure.Providers;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Views;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GlStats.Wpf;
@@ -43,6 +45,9 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
         containerRegistry.Register<IAuthentication, JsonAuthentication>();
         containerRegistry.Register<JsonConfiguration, JsonConfiguration>();
+        containerRegistry.RegisterSingleton<ApplicationDbContext>();
+        containerRegistry.Register<ITeamRepository, TeamRepository>();
+        containerRegistry.Register<IUnitOfWork, UnitOfWork>();
 
         #region UseCases
 
@@ -51,7 +56,7 @@ public partial class App : PrismApplication
 
         #region Presenters
 
-       
+
 
         #endregion
     }

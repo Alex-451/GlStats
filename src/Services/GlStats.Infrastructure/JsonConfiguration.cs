@@ -6,6 +6,7 @@ namespace GlStats.Infrastructure;
 public class JsonConfiguration
 {
     private readonly string _configFullPath = string.Empty;
+    private readonly string _configFolder = string.Empty;
 
     public JsonConfiguration()
     {
@@ -13,6 +14,7 @@ public class JsonConfiguration
         var appFolder = Path.Combine(dataFolder, "gl-stats");
         Directory.CreateDirectory(appFolder);
         _configFullPath = Path.Combine(appFolder, "config.json");
+        _configFolder = appFolder;
     }
 
     public Config GetConfig()
@@ -30,7 +32,7 @@ public class JsonConfiguration
 
     private Config InitializeDefaultConfig()
     {
-        var config = new Config();
+        var config = new Config(connectionString: $@"{_configFolder}\gl-stats.db");
         StoreConfig(config);
         return config;
     }

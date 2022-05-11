@@ -1,10 +1,6 @@
-﻿using GlStats.Core;
-using GlStats.Core.Boundaries.GetCurrentUser;
+﻿using GlStats.Core.Boundaries.GetCurrentUser;
 using GlStats.Core.Boundaries.Infrastructure;
-using GlStats.Infrastructure;
 using GlStats.Wpf.Presenters;
-
-using Prism.Navigation;
 
 namespace GlStats.Wpf.ViewModels;
 
@@ -31,16 +27,15 @@ public class RegistrationWindowViewModel : ViewModelBase
 
     async void Register()
     {
+        _auth.SetConfig(Url, Token);
+        await _getCurrentUserUseCase.Execute();
 
-            _auth.SetConfig(Url, Token);
-            await _getCurrentUserUseCase.Execute();
+        if (_output.CurrentUser != null && !string.IsNullOrWhiteSpace(_output.CurrentUser.Id))
+        {
+            return;
+        }
 
-            if (_output.CurrentUser != null && !string.IsNullOrWhiteSpace(_output.CurrentUser.Id))
-            {
-                return;
-            }
-
-            _auth.SetConfig(string.Empty, string.Empty);
+        _auth.SetConfig(string.Empty, string.Empty);
     }
 
     bool CanRegister()

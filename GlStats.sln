@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlStats.Infrastructure", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{7121FE4D-37C2-4483-B34F-F8D7FDD055E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.ApiWrapper", "src\Services\GlStats.ApiWrapper\GlStats.ApiWrapper.csproj", "{B2D691C8-AF40-4755-A4DA-62394A95A298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlStats.ApiWrapper", "src\Services\GlStats.ApiWrapper\GlStats.ApiWrapper.csproj", "{B2D691C8-AF40-4755-A4DA-62394A95A298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlStats.DataAccess", "src\Services\GlStats.DataAccess\GlStats.DataAccess.csproj", "{785C2104-03C5-4D3C-9B55-1101DF1827B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{B2D691C8-AF40-4755-A4DA-62394A95A298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2D691C8-AF40-4755-A4DA-62394A95A298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2D691C8-AF40-4755-A4DA-62394A95A298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785C2104-03C5-4D3C-9B55-1101DF1827B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785C2104-03C5-4D3C-9B55-1101DF1827B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785C2104-03C5-4D3C-9B55-1101DF1827B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785C2104-03C5-4D3C-9B55-1101DF1827B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{138E70A2-42CD-4830-AA98-C6AEAEB518D4} = {7831C74F-3F4A-4E5F-B541-8256B55A4A49}
 		{5099BE45-EB02-4435-8B6B-9AB33F8D22F8} = {7831C74F-3F4A-4E5F-B541-8256B55A4A49}
 		{B2D691C8-AF40-4755-A4DA-62394A95A298} = {7831C74F-3F4A-4E5F-B541-8256B55A4A49}
+		{785C2104-03C5-4D3C-9B55-1101DF1827B9} = {7831C74F-3F4A-4E5F-B541-8256B55A4A49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {675200E8-1A89-4139-A408-F004F993A3F6}
