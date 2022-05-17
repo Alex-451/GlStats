@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="GlStats.Wpf.Views.RegistrationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"         
+             xmlns:viewModels="clr-namespace:GlStats.Wpf.ViewModels"
+             xmlns:p="clr-namespace:GlStats.Wpf.Resources.Strings"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <StackPanel Margin="10">
+        <Label Content="{x:Static p:AppResource.GitLabConnectionSetup}" Margin="0,0,0,5" Padding="0" HorizontalAlignment="Center"/>
+
+        <Label Content="{x:Static p:AppResource.GitLabServerUrl}" Margin="0,0,0,5" Padding="0"/>
+        <TextBox Text="{Binding Url}" Margin="0,0,0,5"/>
+
+        <Label Content="{x:Static p:AppResource.GitLabAccessToken}" Margin="0,0,0,5" Padding="0"/>
+        <TextBox Text="{Binding Token}" Margin="0,0,0,5"/>
+
+        <Button Command="{Binding RegisterCommand}" Content="{x:Static p:AppResource.Continue}"/>
+        <mah:MetroProgressBar Width="250"
+                              Margin="4"
+                              IsIndeterminate="{Binding IsBusy}"/>
+    </StackPanel>
+</UserControl>

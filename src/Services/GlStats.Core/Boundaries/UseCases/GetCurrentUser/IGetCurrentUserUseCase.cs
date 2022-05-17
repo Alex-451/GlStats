@@ -1,4 +1,4 @@
-﻿namespace GlStats.Core.Boundaries.GetCurrentUser;
+﻿namespace GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 
 public interface IGetCurrentUserUseCase
 {

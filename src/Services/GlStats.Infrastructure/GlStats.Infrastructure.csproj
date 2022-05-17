@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GlStats.ApiWrapper\GlStats.ApiWrapper.csproj" />
     <ProjectReference Include="..\GlStats.Core\GlStats.Core.csproj" />
+    <ProjectReference Include="..\GlStats.DataAccess\GlStats.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>

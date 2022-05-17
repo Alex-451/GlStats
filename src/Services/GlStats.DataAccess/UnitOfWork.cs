@@ -1,4 +1,5 @@
-﻿using GlStats.DataAccess.Repositories;
+﻿using GlStats.Core.Boundaries.Infrastructure;
+using GlStats.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GlStats.DataAccess;
@@ -12,8 +13,9 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(ApplicationDbContext context, ITeamRepository teamRepository)
     {
         _context = context;
-        _context.Database.Migrate();
         TeamRepository = teamRepository;
+
+        //_context.Database.Migrate(); //todo remove this and put somewhere else
     }
 
     public void Commit(bool dryRun = false)

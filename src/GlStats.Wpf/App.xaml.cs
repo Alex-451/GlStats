@@ -1,9 +1,12 @@
 ﻿using System.Net.Http;
+using System.Reflection;
+using System.Resources;
 using GlStats.ApiWrapper;
-using GlStats.Core;
-using GlStats.Core.Boundaries.GetCurrentUser;
 using GlStats.Core.Boundaries.Infrastructure;
 using GlStats.Core.Boundaries.Providers;
+using GlStats.Core.Boundaries.UseCases.AddTeam;
+using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
+using GlStats.Core.Boundaries.UseCases.GetTeams;
 using GlStats.Core.UseCases;
 using GlStats.DataAccess;
 using GlStats.DataAccess.Repositories;
@@ -13,7 +16,7 @@ using GlStats.Infrastructure.Providers;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Views;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace GlStats.Wpf;
 
@@ -25,12 +28,6 @@ public partial class App : PrismApplication
     protected override Window CreateShell()
     {
         var mainWindow = Container.Resolve<MainWindow>();
-        var registrationWindow = Container.Resolve<RegistrationWindow>();
-        var configuration = Container.Resolve<IAuthentication>();
-
-        if (string.IsNullOrWhiteSpace(configuration.GetConfig().GitLabUrl) || string.IsNullOrWhiteSpace(configuration.GetConfig().GitLabUrl))
-            return registrationWindow;
-
         return mainWindow;
     }
 
@@ -40,23 +37,31 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<HttpClient>();
         containerRegistry.Register<INetwork, Network>();
         containerRegistry.Register<IGitLabClient, GitLabClient>();
-        containerRegistry.Register<ICurrentUserProvider, CurrentUserProvider>();
-        containerRegistry.Register<IGetCurrentUserUseCase, GetCurrentUserUseCase>();
-        containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
         containerRegistry.Register<IAuthentication, JsonAuthentication>();
         containerRegistry.Register<JsonConfiguration, JsonConfiguration>();
         containerRegistry.RegisterSingleton<ApplicationDbContext>();
         containerRegistry.Register<ITeamRepository, TeamRepository>();
         containerRegistry.Register<IUnitOfWork, UnitOfWork>();
+        containerRegistry.RegisterInstance(new ResourceManager("GlStats.Wpf.Resources.Strings.AppResource",
+            Assembly.GetExecutingAssembly()));
+
 
         #region UseCases
 
+        containerRegistry.Register<ICurrentUserProvider, CurrentUserProvider>();
+        containerRegistry.Register<IGetCurrentUserUseCase, GetCurrentUserUseCase>();
+
+        containerRegistry.Register<ITeamsProvider, TeamsProvider>();
+        containerRegistry.Register<IGetTeamsUseCase, GetTeamsUseCase>();
+        containerRegistry.Register<IAddTeamUseCase, AddTeamUseCase>();
 
         #endregion
 
         #region Presenters
 
-
+        containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
+        containerRegistry.RegisterSingleton<IGetTeamsOutputPort, GetTeamsPresenter>();
+        containerRegistry.RegisterSingleton<IAddTeamOutputPort, AddTeamPresenter>();
 
         #endregion
     }

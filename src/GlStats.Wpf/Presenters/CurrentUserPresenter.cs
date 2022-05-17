@@ -1,5 +1,8 @@
-﻿using GlStats.Core.Boundaries.GetCurrentUser;
+﻿using System.Resources;
+using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Core.Entities;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Prism.Services.Dialogs;
 
 namespace GlStats.Wpf.Presenters;
@@ -9,13 +12,23 @@ public class CurrentUserPresenter : IGetCurrentUserOutputPort
     public bool HasConnection = true;
     public bool HasValidConfig = true;
     public CurrentUser CurrentUser;
+    private readonly MetroWindow? _window;
+
+    private readonly ResourceManager _resourceManager;
+
+    public CurrentUserPresenter(ResourceManager resourceManager)
+    {
+        _resourceManager = resourceManager;
+
+        _window = (Application.Current.MainWindow as MetroWindow);
+    }
 
     public void Default(CurrentUser currentUser)
     {
         if (string.IsNullOrWhiteSpace(currentUser.Id))
         {
             HasValidConfig = false;
-            MessageBox.Show("Couldn't find user.", "No results");
+            _window.ShowMessageAsync(_resourceManager.GetString("CouldntFindUser"), _resourceManager.GetString("NoUserFoundWithCredentials"));
             return;
         }
 
@@ -25,12 +38,12 @@ public class CurrentUserPresenter : IGetCurrentUserOutputPort
     public void InvalidConfig()
     {
         HasValidConfig = false;
-        MessageBox.Show("The provided configuration might contain errors.", "Invalid configuration");
+        _window.ShowMessageAsync(_resourceManager.GetString("InvalidConfig"), _resourceManager.GetString("ConfigContainsError"));
     }
 
     public void NoConnection()
     {
         HasConnection = false;
-        MessageBox.Show("No internet connection.", "No connection");
+        _window.ShowMessageAsync(_resourceManager.GetString("NoConnection"), _resourceManager.GetString("NoInternetConnection"));
     }
 }

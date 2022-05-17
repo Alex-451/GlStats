@@ -1,5 +1,5 @@
-﻿using GlStats.Core.Boundaries.GetCurrentUser;
-using GlStats.Core.Boundaries.Providers;
+﻿using GlStats.Core.Boundaries.Providers;
+using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Core.Entities.Exceptions;
 
 namespace GlStats.Core.UseCases;

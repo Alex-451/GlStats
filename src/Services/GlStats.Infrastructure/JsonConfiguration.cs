@@ -1,12 +1,14 @@
 ﻿using System.Text.Json;
 using GlStats.Core.Entities;
+using GlStats.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace GlStats.Infrastructure;
 
 public class JsonConfiguration
 {
-    private readonly string _configFullPath = string.Empty;
-    private readonly string _configFolder = string.Empty;
+    private readonly string _configFullPath;
+    private readonly string _configFolder;
 
     public JsonConfiguration()
     {

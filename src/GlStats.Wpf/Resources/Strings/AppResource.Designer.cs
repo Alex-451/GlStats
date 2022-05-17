@@ -61,6 +61,24 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Team.
+        /// </summary>
+        public static string AddTeam {
+            get {
+                return ResourceManager.GetString("AddTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided configuration might contain errors..
+        /// </summary>
+        public static string ConfigContainsError {
+            get {
+                return ResourceManager.GetString("ConfigContainsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string Continue {
@@ -70,11 +88,146 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t find user.
+        /// </summary>
+        public static string CouldntFindUser {
+            get {
+                return ResourceManager.GetString("CouldntFindUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation date.
+        /// </summary>
+        public static string CreationDate {
+            get {
+                return ResourceManager.GetString("CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t connect to the database. Check the database configuration..
+        /// </summary>
+        public static string DatabaseConnectionError {
+            get {
+                return ResourceManager.GetString("DatabaseConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GitLab access token.
+        /// </summary>
+        public static string GitLabAccessToken {
+            get {
+                return ResourceManager.GetString("GitLabAccessToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GitLab connection setup.
         /// </summary>
         public static string GitLabConnectionSetup {
             get {
                 return ResourceManager.GetString("GitLabConnectionSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GitLab server URL.
+        /// </summary>
+        public static string GitLabServerUrl {
+            get {
+                return ResourceManager.GetString("GitLabServerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid configuration.
+        /// </summary>
+        public static string InvalidConfig {
+            get {
+                return ResourceManager.GetString("InvalidConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No connection.
+        /// </summary>
+        public static string NoConnection {
+            get {
+                return ResourceManager.GetString("NoConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No database connection.
+        /// </summary>
+        public static string NoDatabaseConnection {
+            get {
+                return ResourceManager.GetString("NoDatabaseConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There seems to be no internet connection or the host does not respond..
+        /// </summary>
+        public static string NoInternetConnection {
+            get {
+                return ResourceManager.GetString("NoInternetConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No user was found with the provided credentials..
+        /// </summary>
+        public static string NoUserFoundWithCredentials {
+            get {
+                return ResourceManager.GetString("NoUserFoundWithCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The team was successfully created..
+        /// </summary>
+        public static string SuccessfullyCreatedTeam {
+            get {
+                return ResourceManager.GetString("SuccessfullyCreatedTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team added.
+        /// </summary>
+        public static string TeamAdded {
+            get {
+                return ResourceManager.GetString("TeamAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team configuration.
+        /// </summary>
+        public static string TeamConfiguration {
+            get {
+                return ResourceManager.GetString("TeamConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team name.
+        /// </summary>
+        public static string TeamName {
+            get {
+                return ResourceManager.GetString("TeamName", resourceCulture);
             }
         }
     }

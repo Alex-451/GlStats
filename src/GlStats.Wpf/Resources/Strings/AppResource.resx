@@ -117,10 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddTeam" xml:space="preserve">
+    <value>Add Team</value>
+  </data>
+  <data name="ConfigContainsError" xml:space="preserve">
+    <value>The provided configuration might contain errors.</value>
+  </data>
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
   </data>
+  <data name="CouldntFindUser" xml:space="preserve">
+    <value>Couldn't find user</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
+  <data name="DatabaseConnectionError" xml:space="preserve">
+    <value>Couldn't connect to the database. Check the database configuration.</value>
+  </data>
+  <data name="GitLabAccessToken" xml:space="preserve">
+    <value>GitLab access token</value>
+  </data>
   <data name="GitLabConnectionSetup" xml:space="preserve">
     <value>GitLab connection setup</value>
+  </data>
+  <data name="GitLabServerUrl" xml:space="preserve">
+    <value>GitLab server URL</value>
+  </data>
+  <data name="InvalidConfig" xml:space="preserve">
+    <value>Invalid configuration</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NoConnection" xml:space="preserve">
+    <value>No connection</value>
+  </data>
+  <data name="NoDatabaseConnection" xml:space="preserve">
+    <value>No database connection</value>
+  </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>There seems to be no internet connection or the host does not respond.</value>
+  </data>
+  <data name="NoUserFoundWithCredentials" xml:space="preserve">
+    <value>No user was found with the provided credentials.</value>
+  </data>
+  <data name="SuccessfullyCreatedTeam" xml:space="preserve">
+    <value>The team was successfully created.</value>
+  </data>
+  <data name="TeamAdded" xml:space="preserve">
+    <value>Team added</value>
+  </data>
+  <data name="TeamConfiguration" xml:space="preserve">
+    <value>Team configuration</value>
+  </data>
+  <data name="TeamName" xml:space="preserve">
+    <value>Team name</value>
   </data>
 </root>

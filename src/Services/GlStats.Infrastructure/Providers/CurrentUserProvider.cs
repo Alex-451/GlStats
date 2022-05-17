@@ -1,5 +1,4 @@
-﻿using System.Security.Authentication;
-using GlStats.ApiWrapper;
+﻿using GlStats.ApiWrapper;
 using GlStats.ApiWrapper.Entities.Api;
 using GlStats.Core.Boundaries.Providers;
 using GlStats.Core.Entities;

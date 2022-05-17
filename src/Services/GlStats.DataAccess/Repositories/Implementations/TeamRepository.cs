@@ -21,9 +21,11 @@ public class TeamRepository : ITeamRepository
         return await _context.Teams.SingleAsync(t => t.Id == id);
     }
 
-    public async Task AddAsync(Team team)
+    public async Task<Team> AddAsync(Team team)
     {
-        await _context.Teams.AddAsync(team);
+        team.CreationDate = DateTime.Now;
+        var addedTeam = await _context.Teams.AddAsync(team);
+        return addedTeam.Entity;
     }
 
     public async Task UpdateAsync(Team team)

@@ -1,6 +1,6 @@
 ﻿namespace GlStats.Wpf.ViewModels;
 
-public abstract class ViewModelBase : BindableBase
+public abstract class WindowViewModelBase : BindableBase
 {
     private string _title = string.Empty;
 
