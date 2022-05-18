@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using GlStats.Core.Entities;
 using GlStats.DataAccess;
-using Microsoft.EntityFrameworkCore;
 
 namespace GlStats.Infrastructure;
 

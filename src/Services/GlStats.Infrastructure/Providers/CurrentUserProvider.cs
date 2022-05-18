@@ -6,6 +6,7 @@ using GlStats.Core.Entities.Exceptions;
 
 namespace GlStats.Infrastructure.Providers;
 
+//todo rename to GitLabProiver maybe
 public class CurrentUserProvider : ICurrentUserProvider
 {
     private readonly IGitLabClient _client;

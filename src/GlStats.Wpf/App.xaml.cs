@@ -5,8 +5,10 @@ using GlStats.ApiWrapper;
 using GlStats.Core.Boundaries.Infrastructure;
 using GlStats.Core.Boundaries.Providers;
 using GlStats.Core.Boundaries.UseCases.AddTeam;
+using GlStats.Core.Boundaries.UseCases.DeleteTeam;
 using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Core.Boundaries.UseCases.GetTeams;
+using GlStats.Core.Boundaries.UseCases.UpdateTeam;
 using GlStats.Core.UseCases;
 using GlStats.DataAccess;
 using GlStats.DataAccess.Repositories;
@@ -15,8 +17,7 @@ using GlStats.Infrastructure;
 using GlStats.Infrastructure.Providers;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Views;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using LiteDB;
 
 namespace GlStats.Wpf;
 
@@ -39,8 +40,10 @@ public partial class App : PrismApplication
         containerRegistry.Register<IGitLabClient, GitLabClient>();
         containerRegistry.Register<IAuthentication, JsonAuthentication>();
         containerRegistry.Register<JsonConfiguration, JsonConfiguration>();
-        containerRegistry.RegisterSingleton<ApplicationDbContext>();
-        containerRegistry.Register<ITeamRepository, TeamRepository>();
+
+        var auth = Container.Resolve<IAuthentication>();
+        containerRegistry.RegisterInstance(new LiteDatabase(auth.GetConfig().ConnectionString));
+
         containerRegistry.Register<IUnitOfWork, UnitOfWork>();
         containerRegistry.RegisterInstance(new ResourceManager("GlStats.Wpf.Resources.Strings.AppResource",
             Assembly.GetExecutingAssembly()));
@@ -54,6 +57,8 @@ public partial class App : PrismApplication
         containerRegistry.Register<ITeamsProvider, TeamsProvider>();
         containerRegistry.Register<IGetTeamsUseCase, GetTeamsUseCase>();
         containerRegistry.Register<IAddTeamUseCase, AddTeamUseCase>();
+        containerRegistry.Register<IUpdateTeamUseCase, UpdateTeamUseCase>();
+        containerRegistry.Register<IDeleteTeamUseCase, DeleteTeamUseCase>();
 
         #endregion
 
@@ -62,6 +67,15 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
         containerRegistry.RegisterSingleton<IGetTeamsOutputPort, GetTeamsPresenter>();
         containerRegistry.RegisterSingleton<IAddTeamOutputPort, AddTeamPresenter>();
+        containerRegistry.RegisterSingleton<IUpdateTeamOutputPort, UpdateTeamPresenter>();
+        containerRegistry.RegisterSingleton<IDeleteTeamOutputPort, DeleteTeamPresenter>();
+
+        #endregion
+
+        #region Repositories
+
+        containerRegistry.Register<ITeamRepository, TeamRepository>();
+        containerRegistry.Register<ITeamMemberRepository, TeamMemberRepository>();
 
         #endregion
     }

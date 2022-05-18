@@ -9,6 +9,8 @@
   <ItemGroup>
     <Folder Include="Boundaries\UseCases\GetTeams\" />
     <Folder Include="Boundaries\UseCases\AddTeam\" />
+    <Folder Include="Boundaries\UseCases\DeleteTeam\" />
+    <Folder Include="Boundaries\UseCases\UpdateTeam\" />
     <Folder Include="Entities\Exceptions\" />
   </ItemGroup>
 

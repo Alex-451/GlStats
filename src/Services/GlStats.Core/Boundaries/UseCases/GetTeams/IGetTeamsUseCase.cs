@@ -2,5 +2,5 @@
 
 public interface IGetTeamsUseCase
 {
-    Task Execute();
+    void Execute();
 }

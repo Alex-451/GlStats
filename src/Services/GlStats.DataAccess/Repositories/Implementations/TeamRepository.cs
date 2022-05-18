@@ -1,50 +1,47 @@
 ﻿using GlStats.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
+using LiteDB;
 
 namespace GlStats.DataAccess.Repositories.Implementations;
 
 public class TeamRepository : ITeamRepository
 {
-    private readonly ApplicationDbContext _context;
-    public TeamRepository(ApplicationDbContext context)
+    private readonly LiteDatabase _database;
+
+    private readonly ILiteCollection<Team> _col;
+
+    public TeamRepository(LiteDatabase database)
     {
-        _context = context;
+        _database = database;
+
+        _col = _database.GetCollection<Team>(nameof(Team), BsonAutoId.Int32);
     }
 
-    public async Task<IEnumerable<Team>> GetAllAsync()
+    public IEnumerable<Team> GetAll()
     {
-        return await _context.Teams.ToListAsync();
+        var result = _col.FindAll();
+        return result;
     }
 
-    public async Task<Team> GetAsync(int id)
+    public Team GetById(int id)
     {
-        return await _context.Teams.SingleAsync(t => t.Id == id);
+        return _col.FindById(id);
     }
 
-    public async Task<Team> AddAsync(Team team)
+    public int Add(Team team)
     {
         team.CreationDate = DateTime.Now;
-        var addedTeam = await _context.Teams.AddAsync(team);
-        return addedTeam.Entity;
+
+        var id = _col.Insert(team);
+        return id.AsInt32;
     }
 
-    public async Task UpdateAsync(Team team)
+    public bool Update(int id, Team team)
     {
-        var entry = await _context.Teams.FindAsync(team.Id);
-
-        if (entry != null)
-        {
-            entry = team;
-        }
+        return _col.Update(id, team);
     }
 
-    public async Task DeleteAsync(int id)
+    public bool Delete(int id)
     {
-        var entry = await _context.Teams.FindAsync(id);
-
-        if (entry != null)
-        {
-            _context.Teams.Remove(entry);
-        }
+        return _col.Delete(id);
     }
 }

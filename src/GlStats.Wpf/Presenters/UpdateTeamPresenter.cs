@@ -1,33 +1,32 @@
 ﻿using System.Resources;
-using GlStats.Core.Boundaries.UseCases.AddTeam;
+using GlStats.Core.Boundaries.UseCases.UpdateTeam;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace GlStats.Wpf.Presenters;
 
-public class AddTeamPresenter : IAddTeamOutputPort
+public class UpdateTeamPresenter : IUpdateTeamOutputPort
 {
-    public bool HasDatabaseConnection = true;
-    public int TeamId;
+    public bool UpdatedEntry = false;
     private readonly MetroWindow? _window;
 
     private readonly ResourceManager _resourceManager;
 
-    public AddTeamPresenter(ResourceManager resourceManager)
+    public UpdateTeamPresenter(ResourceManager resourceManager)
     {
         _resourceManager = resourceManager;
 
         _window = (Application.Current.MainWindow as MetroWindow);
     }
 
-    public void Default(int teamId)
+    public void Default(bool updated)
     {
-        TeamId = teamId;
+       UpdatedEntry = updated;
     }
 
     public void NoDatabaseConnection()
     {
-        HasDatabaseConnection = false;
+        UpdatedEntry = false;
         _window.ShowMessageAsync(_resourceManager.GetString("NoDatabaseConnection"), _resourceManager.GetString("DatabaseConnectionError"));
     }
 }

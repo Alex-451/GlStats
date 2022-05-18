@@ -1,27 +1,26 @@
 ﻿using GlStats.Core.Boundaries.Providers;
-using GlStats.Core.Boundaries.UseCases.AddTeam;
-using GlStats.Core.Entities;
+using GlStats.Core.Boundaries.UseCases.DeleteTeam;
 using GlStats.Core.Entities.Exceptions;
 
 namespace GlStats.Core.UseCases;
 
-public class AddTeamUseCase : IAddTeamUseCase
+public class DeleteTeamUseCase : IDeleteTeamUseCase
 {
-    private readonly IAddTeamOutputPort _output;
+    private readonly IDeleteTeamOutputPort _output;
     private readonly ITeamsProvider _teamsProvider;
 
-    public AddTeamUseCase(IAddTeamOutputPort output, ITeamsProvider teamsProvider)
+    public DeleteTeamUseCase(IDeleteTeamOutputPort output, ITeamsProvider teamsProvider)
     {
         _output = output;
         _teamsProvider = teamsProvider;
     }
 
-    public void Execute(Team team)
+    public void Execute(int teamId)
     {
         try
         {
-            var teamId = _teamsProvider.AddTeam(team);
-            _output.Default(teamId);
+            var isDeleted = _teamsProvider.DeleteTeam(teamId);
+            _output.Default(isDeleted);
         }
         catch (NoDatabaseConnection)
         {

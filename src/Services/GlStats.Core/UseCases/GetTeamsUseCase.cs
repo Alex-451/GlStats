@@ -16,11 +16,11 @@ public class GetTeamsUseCase : IGetTeamsUseCase
     }
     
 
-    public async Task Execute()
+    public void Execute()
     {
         try
         {
-            var teams = await _teamsProvider.GetTeamsAsync();
+            var teams = _teamsProvider.GetTeams();
             _output.Default(teams);
         }
         catch (NoDatabaseConnection)

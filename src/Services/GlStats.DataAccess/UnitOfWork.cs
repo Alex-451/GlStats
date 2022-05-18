@@ -1,29 +1,46 @@
-﻿using GlStats.Core.Boundaries.Infrastructure;
-using GlStats.DataAccess.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using GlStats.DataAccess.Repositories;
+using LiteDB;
 
 namespace GlStats.DataAccess;
 
+//todo fix unit of work pattern
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ApplicationDbContext _context;
-
     public ITeamRepository TeamRepository { get; }
+    public ITeamMemberRepository TeamMemberRepository { get; }
 
-    public UnitOfWork(ApplicationDbContext context, ITeamRepository teamRepository)
+    private readonly LiteDatabase _database;
+
+    public UnitOfWork(LiteDatabase database, ITeamRepository teamRepository, ITeamMemberRepository teamMemberRepository)
     {
-        _context = context;
-        TeamRepository = teamRepository;
+        _database = database;
+        _database.BeginTrans();
 
-        //_context.Database.Migrate(); //todo remove this and put somewhere else
+        TeamRepository = teamRepository;
+        TeamMemberRepository = teamMemberRepository;
+
     }
+
 
     public void Commit(bool dryRun = false)
     {
-        if (dryRun)
-            return;
+        try
+        {
+            if (dryRun)
+                return;
 
-        _context.SaveChanges();
+            _database.Commit();
+        }
+        catch
+        {
+            _database.Rollback();
+            throw;
+        }
+        finally
+        {
+            //_database.Dispose();
+            //_database.BeginTrans();
+        }
     }
 
     public void Dispose()
@@ -36,7 +53,7 @@ public class UnitOfWork : IUnitOfWork
     {
         if (disposing)
         {
-            _context.Dispose();
+            _database.Dispose();
         }
     }
 }

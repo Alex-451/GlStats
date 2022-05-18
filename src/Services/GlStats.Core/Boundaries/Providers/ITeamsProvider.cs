@@ -4,6 +4,11 @@ namespace GlStats.Core.Boundaries.Providers;
 
 public interface ITeamsProvider
 {
-    Task<IEnumerable<Team>> GetTeamsAsync();
-    Task<Team> AddTeamAsync(string name);
+    IEnumerable<Team> GetTeams();
+
+    int AddTeam(Team team);
+
+    bool UpdateTeam(int id, Team team);
+
+    bool DeleteTeam(int teamId);
 }

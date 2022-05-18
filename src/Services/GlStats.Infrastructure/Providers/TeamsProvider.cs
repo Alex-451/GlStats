@@ -14,11 +14,11 @@ public class TeamsProvider : ITeamsProvider
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<IEnumerable<Team>> GetTeamsAsync()
+    public IEnumerable<Team> GetTeams()
     {
         try
         {
-            return (await _unitOfWork.TeamRepository.GetAllAsync()).Select(ToTeam);
+            return _unitOfWork.TeamRepository.GetAll().Select(ToTeam);
         }
         catch (Exception e)
         {
@@ -27,13 +27,49 @@ public class TeamsProvider : ITeamsProvider
         }
     }
 
-    public async Task<Team> AddTeamAsync(string name)
+    public int AddTeam(Team team)
     {
         try
         {
-            var addedTeam = await _unitOfWork.TeamRepository.AddAsync(new DataAccess.Entities.Team { Name = name, });
+            var id= _unitOfWork.TeamRepository.Add(new DataAccess.Entities.Team
+            {
+                Name = team.Name,
+            });
             _unitOfWork.Commit();
-            return ToTeam(addedTeam);
+            return id;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw new NoDatabaseConnection();
+        }
+    }
+
+    public bool UpdateTeam(int id, Team team)
+    {
+        try
+        {
+            var hasUpdated = _unitOfWork.TeamRepository.Update(id, new DataAccess.Entities.Team
+            {
+                Name = team.Name,
+            });
+            _unitOfWork.Commit();
+            return hasUpdated;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public bool DeleteTeam(int teamId)
+    {
+        try
+        {
+            var deleted = _unitOfWork.TeamRepository.Delete(teamId);
+            _unitOfWork.Commit();
+            return deleted;
         }
         catch (Exception e)
         {

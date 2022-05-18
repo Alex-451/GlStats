@@ -19,25 +19,53 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="5,5,5,20" Grid.Row="0">
-            <Button Command="{Binding OpenAddTeamDialogCommand}">
+            <Button Command="{Binding AddTeamCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconBootstrapIcons Kind="PlusSquare" VerticalAlignment="Center"/>
-                        <Label Content="{x:Static p:AppResource.AddTeam}"></Label>
+                        <Label Content="{x:Static p:AppResource.AddTeam}"/>
                     </StackPanel>
                 </Button.Content>
             </Button>
         </StackPanel>
-
-        <DataGrid ItemsSource="{Binding Teams}" AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid x:Name="grid" ItemsSource="{Binding Teams}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False" DataContext="{Binding .}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static p:AppResource.TeamName}" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="{x:Static p:AppResource.CreationDate}" Binding="{Binding CreationDate}"></DataGridTextColumn>
-
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="{x:Static p:AppResource.TeamName}" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="{x:Static p:AppResource.CreationDate}" Binding="{Binding CreationDate}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="0,0,5,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconPacks:PackIconBootstrapIcons Kind="People" VerticalAlignment="Center"/>
+                                        <Label Content="{x:Static p:AppResource.Members}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Margin="0,0,5,0"
+                                        Command="{Binding DataContext.UpdateTeamCommand, ElementName=grid}"
+                                        CommandParameter="{Binding Id}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconPacks:PackIconBootstrapIcons Kind="Pen" VerticalAlignment="Center"/>
+                                        <Label Content="{x:Static p:AppResource.Edit}"/>
+                                    </StackPanel>
+                                    
+                                </Button>
+                                <Button Margin="0,0,5,0"
+                                        Command="{Binding DataContext.DeleteTeamCommand, ElementName=grid}"
+                                        CommandParameter="{Binding .}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconPacks:PackIconBootstrapIcons Kind="Trash" VerticalAlignment="Center"/>
+                                        <Label Content="{x:Static p:AppResource.Delete}"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
         <mah:ProgressRing Grid.Row="1" IsActive="{Binding IsLoadingTeams}" />
     </Grid>
 </UserControl>

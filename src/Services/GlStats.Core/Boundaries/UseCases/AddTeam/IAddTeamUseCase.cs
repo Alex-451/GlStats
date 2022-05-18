@@ -4,5 +4,5 @@ namespace GlStats.Core.Boundaries.UseCases.AddTeam;
 
 public interface IAddTeamUseCase
 {
-    Task Execute(string teamName);
+    void Execute(Team team);
 }

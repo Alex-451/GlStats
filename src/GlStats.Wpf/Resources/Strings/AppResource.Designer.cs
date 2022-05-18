@@ -70,6 +70,24 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete.
+        /// </summary>
+        public static string AreYouSureYouWantToDelete {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided configuration might contain errors..
         /// </summary>
         public static string ConfigContainsError {
@@ -115,6 +133,33 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete team.
+        /// </summary>
+        public static string DeleteTeam {
+            get {
+                return ResourceManager.GetString("DeleteTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GitLab access token.
         /// </summary>
         public static string GitLabAccessToken {
@@ -147,6 +192,15 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string InvalidConfig {
             get {
                 return ResourceManager.GetString("InvalidConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
             }
         }
         
@@ -192,6 +246,15 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string NoUserFoundWithCredentials {
             get {
                 return ResourceManager.GetString("NoUserFoundWithCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
