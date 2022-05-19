@@ -61,6 +61,15 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add member.
+        /// </summary>
+        public static string AddMember {
+            get {
+                return ResourceManager.GetString("AddMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Team.
         /// </summary>
         public static string AddTeam {
@@ -187,11 +196,29 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid configuration.
         /// </summary>
         public static string InvalidConfig {
             get {
                 return ResourceManager.GetString("InvalidConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage members.
+        /// </summary>
+        public static string ManageMembers {
+            get {
+                return ResourceManager.GetString("ManageMembers", resourceCulture);
             }
         }
         
@@ -259,6 +286,33 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The team was successfully created..
         /// </summary>
         public static string SuccessfullyCreatedTeam {
@@ -291,6 +345,15 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string TeamName {
             get {
                 return ResourceManager.GetString("TeamName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teams.
+        /// </summary>
+        public static string Teams {
+            get {
+                return ResourceManager.GetString("Teams", resourceCulture);
             }
         }
     }

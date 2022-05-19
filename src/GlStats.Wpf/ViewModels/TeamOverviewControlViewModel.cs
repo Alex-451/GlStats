@@ -6,8 +6,10 @@ using GlStats.Core.Boundaries.UseCases.GetTeams;
 using GlStats.Core.Boundaries.UseCases.UpdateTeam;
 using GlStats.Core.Entities;
 using GlStats.Wpf.Presenters;
+using GlStats.Wpf.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Prism.Regions;
 
 namespace GlStats.Wpf.ViewModels
 {
@@ -26,13 +28,15 @@ namespace GlStats.Wpf.ViewModels
         private readonly DeleteTeamPresenter _deleteTeamOutput;
 
         private readonly ResourceManager _resourceManager;
+        private readonly IRegionManager _regionManager;
 
         public DelegateCommand LoadTeamsCommand { get; private set; }
         public DelegateCommand AddTeamCommand { get; private set; }
         public DelegateCommand<int?> UpdateTeamCommand { get; private set; }
         public DelegateCommand<Team?> DeleteTeamCommand { get; private set; }
+        public DelegateCommand<Team?> ManageTeamMembersCommand { get; private set; }
 
-        public TeamOverviewControlViewModel(IGetTeamsUseCase getTeamsUseCase, IGetTeamsOutputPort getTeamsOutput, IAddTeamUseCase addTeamUseCase, IAddTeamOutputPort addTeamOutput, IUpdateTeamUseCase updateTeamUseCase, IUpdateTeamOutputPort updateTeamOutput, IDeleteTeamUseCase deleteTeamUse, IDeleteTeamOutputPort deleteTeamOutput, ResourceManager resourceManager)
+        public TeamOverviewControlViewModel(IGetTeamsUseCase getTeamsUseCase, IGetTeamsOutputPort getTeamsOutput, IAddTeamUseCase addTeamUseCase, IAddTeamOutputPort addTeamOutput, IUpdateTeamUseCase updateTeamUseCase, IUpdateTeamOutputPort updateTeamOutput, IDeleteTeamUseCase deleteTeamUse, IDeleteTeamOutputPort deleteTeamOutput, ResourceManager resourceManager, IRegionManager regionManager)
         {
             _getTeamsUseCase = getTeamsUseCase;
             _getTeamsOutput = (GetTeamsPresenter)getTeamsOutput;
@@ -47,6 +51,7 @@ namespace GlStats.Wpf.ViewModels
             _deleteTeamOutput = (DeleteTeamPresenter)deleteTeamOutput;
 
             _resourceManager = resourceManager;
+            _regionManager = regionManager;
 
             IsLoadingTeams = false;
             Teams = new ObservableCollection<Team>();
@@ -55,7 +60,7 @@ namespace GlStats.Wpf.ViewModels
             AddTeamCommand = new DelegateCommand(AddTeam);
             UpdateTeamCommand = new DelegateCommand<int?>(UpdateTeam);
             DeleteTeamCommand = new DelegateCommand<Team?>(DeleteTeam);
-
+            ManageTeamMembersCommand = new DelegateCommand<Team?>(ManageTeamMembers);
         }
 
         void LoadTeams()
@@ -114,9 +119,9 @@ namespace GlStats.Wpf.ViewModels
                 {
                     AffirmativeButtonText = _resourceManager.GetString("Delete"),
                     NegativeButtonText = _resourceManager.GetString("Cancel"),
-                    
+
                 };
-                var result = await metroWindow.ShowMessageAsync(_resourceManager.GetString("DeleteTeam"), _resourceManager.GetString("AreYouSureYouWantToDelete") + $" {team.Name}?",style:MessageDialogStyle.AffirmativeAndNegative, settings: dialogSettings);
+                var result = await metroWindow.ShowMessageAsync(_resourceManager.GetString("DeleteTeam"), _resourceManager.GetString("AreYouSureYouWantToDelete") + $" {team.Name}?", style: MessageDialogStyle.AffirmativeAndNegative, settings: dialogSettings);
 
                 if (result == MessageDialogResult.Affirmative)
                 {
@@ -126,6 +131,11 @@ namespace GlStats.Wpf.ViewModels
                         Teams.Remove(Teams.Single(x => x.Id == team.Id));
                 }
             }
+        }
+
+        async void ManageTeamMembers(Team? team)
+        {
+            _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(ManageTeamMembersControl), UriKind.Relative));
         }
 
         private void RefreshCollection()

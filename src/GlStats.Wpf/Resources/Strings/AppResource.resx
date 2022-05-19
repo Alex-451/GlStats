@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddMember" xml:space="preserve">
+    <value>Add member</value>
+  </data>
   <data name="AddTeam" xml:space="preserve">
     <value>Add Team</value>
   </data>
@@ -159,8 +162,14 @@
   <data name="GitLabServerUrl" xml:space="preserve">
     <value>GitLab server URL</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
   <data name="InvalidConfig" xml:space="preserve">
     <value>Invalid configuration</value>
+  </data>
+  <data name="ManageMembers" xml:space="preserve">
+    <value>Manage members</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members</value>
@@ -183,6 +192,15 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
   <data name="SuccessfullyCreatedTeam" xml:space="preserve">
     <value>The team was successfully created.</value>
   </data>
@@ -194,5 +212,8 @@
   </data>
   <data name="TeamName" xml:space="preserve">
     <value>Team name</value>
+  </data>
+  <data name="Teams" xml:space="preserve">
+    <value>Teams</value>
   </data>
 </root>

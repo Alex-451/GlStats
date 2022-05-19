@@ -18,7 +18,7 @@ public class NavigationControlViewModel : BindableBase
 
     void OpenTeamsControl()
     {
-        _regionManager.RegisterViewWithRegion("ContentRegion", typeof(TeamOverviewControl));
+        _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(TeamOverviewControl), UriKind.Relative));
     }
 }
 

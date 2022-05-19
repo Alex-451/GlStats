@@ -24,11 +24,12 @@ namespace GlStats.Wpf.ViewModels
             if (string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabUrl) ||
                 string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabToken))
             {
-                _regionManager.RegisterViewWithRegion("ContentRegion", typeof(RegistrationControl));
+                _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(RegistrationControl), UriKind.Relative));
             }
             else
             {
-                _regionManager.RegisterViewWithRegion("NavRegion", typeof(NavigationControl));
+                _regionManager.RequestNavigate("NavRegion", new Uri(nameof(NavigationControl), UriKind.Relative));
+                _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(StatisticsControl), UriKind.Relative));
             }
         }
     }

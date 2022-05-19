@@ -18,6 +18,7 @@ using GlStats.Infrastructure.Providers;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Views;
 using LiteDB;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace GlStats.Wpf;
 
@@ -40,6 +41,7 @@ public partial class App : PrismApplication
         containerRegistry.Register<IGitLabClient, GitLabClient>();
         containerRegistry.Register<IAuthentication, JsonAuthentication>();
         containerRegistry.Register<JsonConfiguration, JsonConfiguration>();
+        containerRegistry.Register<IDialogCoordinator, DialogCoordinator>();
 
         var auth = Container.Resolve<IAuthentication>();
         containerRegistry.RegisterInstance(new LiteDatabase(auth.GetConfig().ConnectionString));
@@ -48,6 +50,16 @@ public partial class App : PrismApplication
         containerRegistry.RegisterInstance(new ResourceManager("GlStats.Wpf.Resources.Strings.AppResource",
             Assembly.GetExecutingAssembly()));
 
+
+        #region Navigation
+
+        containerRegistry.RegisterForNavigation(typeof(NavigationControl), nameof(NavigationControl));
+        containerRegistry.RegisterForNavigation(typeof(RegistrationControl), nameof(RegistrationControl));
+        containerRegistry.RegisterForNavigation(typeof(StatisticsControl), nameof(StatisticsControl));
+        containerRegistry.RegisterForNavigation(typeof(TeamOverviewControl), nameof(TeamOverviewControl));
+        containerRegistry.RegisterForNavigation(typeof(ManageTeamMembersControl), nameof(ManageTeamMembersControl));
+
+        #endregion
 
         #region UseCases
 

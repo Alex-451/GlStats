@@ -43,6 +43,8 @@ namespace GlStats.Wpf.ViewModels
 
                 if (!string.IsNullOrWhiteSpace(_output.CurrentUser?.Id))
                 {
+                    _regionManager.RequestNavigate("NavRegion", new Uri(nameof(NavigationControl), UriKind.Relative));
+                    _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(StatisticsControl), UriKind.Relative));
                     return;
                 }
 

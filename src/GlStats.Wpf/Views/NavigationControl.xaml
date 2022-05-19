@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:p="clr-namespace:GlStats.Wpf.Resources.Strings"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
         <Menu Background="Transparent">
-            <MenuItem Header="Teams" Command="{Binding OpenTeamsControlCommand}"/>
-            <MenuItem Header="Settings"/>
+            <MenuItem Header="{x:Static p:AppResource.Statistics}"/>
+            <MenuItem Header="{x:Static p:AppResource.Teams}" Command="{Binding OpenTeamsControlCommand}"/>
+            <MenuItem Header="{x:Static p:AppResource.Help}">
+                <MenuItem Header="{x:Static p:AppResource.Settings}">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconBootstrapIcons Kind="Gear" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
         </Menu>
     </Grid>
 </UserControl>
