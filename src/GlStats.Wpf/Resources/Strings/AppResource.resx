@@ -216,4 +216,7 @@
   <data name="Teams" xml:space="preserve">
     <value>Teams</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
 </root>

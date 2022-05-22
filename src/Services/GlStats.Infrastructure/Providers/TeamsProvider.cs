@@ -27,6 +27,19 @@ public class TeamsProvider : ITeamsProvider
         }
     }
 
+    public Team GetTeamById(int id)
+    {
+        try
+        {
+            return ToTeam(_unitOfWork.TeamRepository.GetById(id));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw new NoDatabaseConnection();   
+        }
+    }
+
     public int AddTeam(Team team)
     {
         try

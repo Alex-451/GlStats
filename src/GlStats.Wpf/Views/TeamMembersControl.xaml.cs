@@ -3,11 +3,11 @@
 namespace GlStats.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for ManageTeamMembersControl
+    /// Interaction logic for TeamMembersControl
     /// </summary>
-    public partial class ManageTeamMembersControl : UserControl
+    public partial class TeamMembersControl : UserControl
     {
-        public ManageTeamMembersControl()
+        public TeamMembersControl()
         {
             InitializeComponent();
         }

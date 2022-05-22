@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="5,5,5,20" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20" Grid.Row="0">
             <Button Command="{Binding AddTeamCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
@@ -28,7 +28,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid x:Name="grid" ItemsSource="{Binding Teams}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False" DataContext="{Binding .}">
+        <DataGrid x:Name="Grid" ItemsSource="{Binding Teams}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False" DataContext="{Binding .}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="{x:Static p:AppResource.TeamName}" Binding="{Binding Name}" IsReadOnly="True"/>
@@ -38,7 +38,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Margin="0,0,5,0"
-                                        Command="{Binding DataContext.ManageTeamMembersCommand, ElementName=grid}"
+                                        Command="{Binding DataContext.ManageTeamMembersCommand, ElementName=Grid}"
                                         CommandParameter="{Binding .}">
                                     <StackPanel Orientation="Horizontal">
                                         <iconPacks:PackIconBootstrapIcons Kind="People" VerticalAlignment="Center"/>
@@ -46,7 +46,7 @@
                                     </StackPanel>
                                 </Button>
                                 <Button Margin="0,0,5,0"
-                                        Command="{Binding DataContext.UpdateTeamCommand, ElementName=grid}"
+                                        Command="{Binding DataContext.UpdateTeamCommand, ElementName=Grid}"
                                         CommandParameter="{Binding Id}">
                                     <StackPanel Orientation="Horizontal">
                                         <iconPacks:PackIconBootstrapIcons Kind="Pen" VerticalAlignment="Center"/>
@@ -55,7 +55,7 @@
                                     
                                 </Button>
                                 <Button Margin="0,0,5,0"
-                                        Command="{Binding DataContext.DeleteTeamCommand, ElementName=grid}"
+                                        Command="{Binding DataContext.DeleteTeamCommand, ElementName=Grid}"
                                         CommandParameter="{Binding .}">
                                     <StackPanel Orientation="Horizontal">
                                         <iconPacks:PackIconBootstrapIcons Kind="Trash" VerticalAlignment="Center"/>

@@ -16,6 +16,16 @@ public class TeamMemberRepository : ITeamMemberRepository
         _col = _database.GetCollection<TeamMember>(nameof(TeamMember), BsonAutoId.Int32);
     }
 
+    public IEnumerable<TeamMember> GetMembersOfTeam(int teamId)
+    {
+        var result = _col.Find(x => x.TeamId == teamId);
+        return result;
+    }
+
+    public void RemoveFromTeam(int teamId, string gitLabUserId)
+    {
+        _col.DeleteMany(x => x.TeamId == teamId && x.MemberId == gitLabUserId);
+    }
 
     public int AddToTeam(int teamId, string gitLabUserId)
     {
@@ -26,10 +36,5 @@ public class TeamMemberRepository : ITeamMemberRepository
         });
 
         return id.AsInt32;
-    }
-
-    public void RemoveFromTeam(int teamId, string gitLabUserId)
-    {
-        _col.DeleteMany(x => x.TeamId == teamId && x.MemberId == gitLabUserId);
     }
 }

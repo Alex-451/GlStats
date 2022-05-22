@@ -10,4 +10,8 @@
     <ProjectReference Include="..\GlStats.Core\GlStats.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Responses\Users\" />
+  </ItemGroup>
+
 </Project>

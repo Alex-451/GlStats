@@ -6,7 +6,7 @@
                  xmlns:views="clr-namespace:GlStats.Wpf.Views"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  prism:ViewModelLocator.AutoWireViewModel="True"
-                 mah:DialogParticipation.Register="{Binding}"
+                 mah:DialogParticipation.Register="{Binding }"
                  Title="GitLab Statistics">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -19,6 +19,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ContentControl prism:RegionManager.RegionName="NavRegion" Margin="5" Grid.Row="0"/>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" Margin="5" Grid.Row="1" />
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Margin="10" Grid.Row="1" />
     </Grid>
 </mah:MetroWindow>

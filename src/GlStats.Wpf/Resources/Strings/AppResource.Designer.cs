@@ -356,5 +356,14 @@ namespace GlStats.Wpf.Resources.Strings {
                 return ResourceManager.GetString("Teams", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
     }
 }

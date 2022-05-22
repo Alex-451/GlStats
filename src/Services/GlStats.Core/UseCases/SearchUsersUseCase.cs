@@ -1,25 +1,25 @@
 ﻿using GlStats.Core.Boundaries.Providers;
-using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
+using GlStats.Core.Boundaries.UseCases.SearchUsers;
 using GlStats.Core.Entities.Exceptions;
 
 namespace GlStats.Core.UseCases;
 
-public class GetCurrentUserUseCase : IGetCurrentUserUseCase
+public class SearchUsersUseCase : ISearchUsersUseCase
 {
-    private readonly IGetCurrentUserOutputPort _output;
+    private readonly ISearchUsersOutputPort _output;
     private readonly IGitLabProvider _gitLabProvider;
 
-    public GetCurrentUserUseCase(IGetCurrentUserOutputPort output, IGitLabProvider gitLabProvider)
+    public SearchUsersUseCase(ISearchUsersOutputPort output, IGitLabProvider gitLabProvider)
     {
         _output = output;
         _gitLabProvider = gitLabProvider;
     }
 
-    public async Task Execute()
+    public async Task ExecuteAsync(string search)
     {
         try
         {
-            var currentUser = await _gitLabProvider.GetCurrentUserAsync();
+            var currentUser = await _gitLabProvider.SearchUsersAsync(search);
             _output.Default(currentUser);
         }
         catch (NoConnectionException)

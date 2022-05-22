@@ -6,6 +6,7 @@ using GlStats.Core.Boundaries.UseCases.GetTeams;
 using GlStats.Core.Boundaries.UseCases.UpdateTeam;
 using GlStats.Core.Entities;
 using GlStats.Wpf.Presenters;
+using GlStats.Wpf.Utilities;
 using GlStats.Wpf.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -135,7 +136,13 @@ namespace GlStats.Wpf.ViewModels
 
         async void ManageTeamMembers(Team? team)
         {
-            _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(ManageTeamMembersControl), UriKind.Relative));
+            if (team != null)
+            {
+                var parameters = new NavigationParameters();
+                parameters.Add("ID", team.Id);
+
+                _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(TeamMembersControl), UriKind.Relative), parameters);
+            }
         }
 
         private void RefreshCollection()
@@ -156,7 +163,6 @@ namespace GlStats.Wpf.ViewModels
         }
 
         private IList<Team> _teams;
-
         public IList<Team> Teams
         {
             get => _teams;

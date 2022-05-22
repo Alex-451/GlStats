@@ -1,6 +1,7 @@
 ﻿using GlStats.Core.Boundaries.Infrastructure;
 using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Wpf.Presenters;
+using GlStats.Wpf.Utilities;
 using GlStats.Wpf.Views;
 using Prism.Regions;
 
@@ -43,8 +44,8 @@ namespace GlStats.Wpf.ViewModels
 
                 if (!string.IsNullOrWhiteSpace(_output.CurrentUser?.Id))
                 {
-                    _regionManager.RequestNavigate("NavRegion", new Uri(nameof(NavigationControl), UriKind.Relative));
-                    _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(StatisticsControl), UriKind.Relative));
+                    _regionManager.RequestNavigate(RegionNames.NavRegion, new Uri(nameof(NavigationControl), UriKind.Relative));
+                    _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(StatisticsControl), UriKind.Relative));
                     return;
                 }
 

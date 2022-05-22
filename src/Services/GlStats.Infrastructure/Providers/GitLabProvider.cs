@@ -6,12 +6,11 @@ using GlStats.Core.Entities.Exceptions;
 
 namespace GlStats.Infrastructure.Providers;
 
-//todo rename to GitLabProiver maybe
-public class CurrentUserProvider : ICurrentUserProvider
+public class GitLabProvider : IGitLabProvider
 {
     private readonly IGitLabClient _client;
 
-    public CurrentUserProvider(IGitLabClient client)
+    public GitLabProvider(IGitLabClient client)
     {
         _client = client;
     }
@@ -41,12 +40,45 @@ public class CurrentUserProvider : ICurrentUserProvider
         }
     }
 
+    public async Task<IEnumerable<User>> SearchUsersAsync(string search)
+    {
+        if (!_client.IsAuthenticated())
+            throw new InvalidConfigException();
+
+        try
+        {
+            var currentUser = await _client.SearchUsersAsync(search);
+            return currentUser.Select(ToUser);
+        }
+        catch (InvalidOperationException)
+        {
+            throw new InvalidConfigException();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw new NoConnectionException();
+        }
+    }
+
     private CurrentUser ToCurrentUser(CurrentUserResponse response)
     {
-        return new CurrentUser
+        return new()
         {
             Id = response.Id,
             Name = response.Name
+        };
+    }
+
+    private User ToUser(UserResponse response)
+    {
+        return new()
+        {
+            Id = response.Id,
+            AvatarUrl = response.AvatarUrl,
+            Username = response.Username,
+            Name = response.Name,
+            PublicEmail = response.PublicEmail,
         };
     }
 }

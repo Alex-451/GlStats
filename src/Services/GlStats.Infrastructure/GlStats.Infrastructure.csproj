@@ -12,8 +12,4 @@
     <ProjectReference Include="..\GlStats.DataAccess\GlStats.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Providers\" />
-  </ItemGroup>
-
 </Project>

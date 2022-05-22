@@ -1,4 +1,5 @@
-﻿using GlStats.Wpf.Views;
+﻿using GlStats.Wpf.Utilities;
+using GlStats.Wpf.Views;
 using Prism.Regions;
 
 namespace GlStats.Wpf.ViewModels;
@@ -18,7 +19,7 @@ public class NavigationControlViewModel : BindableBase
 
     void OpenTeamsControl()
     {
-        _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(TeamOverviewControl), UriKind.Relative));
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(TeamOverviewControl), UriKind.Relative));
     }
 }
 

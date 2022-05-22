@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="GlStats.Wpf.Utilities.CustomDialogs.GitLabUserDialog.GitLabUserDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:p="clr-namespace:GlStats.Wpf.Resources.Strings"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:converters="clr-namespace:GlStats.Wpf.Utilities.Converters"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <converters:GitLabAvatarConverter x:Key="AvatarConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBox  Text="{Binding SearchTerm}"
+                  Grid.Row="0" Grid.Column="0"
+                  mah:TextBoxHelper.ClearTextButton="True"
+                  mah:TextBoxHelper.UseFloatingWatermark="True"
+                  mah:TextBoxHelper.Watermark="{x:Static p:AppResource.Search}">
+            <TextBox.Style>
+                <Style BasedOn="{StaticResource MahApps.Styles.TextBox.Search}" TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <Trigger Property="mah:TextBoxHelper.HasText" Value="True">
+                            <Setter Property="mah:TextBoxHelper.ButtonContent" Value="r" />
+                            <Setter Property="mah:TextBoxHelper.ButtonContentTemplate" Value="{x:Null}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Button Command="{Binding SearchUsersCommand}" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconBootstrapIcons Kind="Search" VerticalAlignment="Center"/>
+                    <Label Content="{x:Static p:AppResource.Search}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+
+        <DataGrid x:Name="Grid" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False" CanUserAddRows="False" DataContext="{Binding .}" Grid.Row="1" Grid.ColumnSpan="1" Margin="0,20">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Ellipse Height="25" Width="25">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding AvatarUrl, Converter={StaticResource AvatarConverter}}" Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static p:AppResource.Username}" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="{x:Static p:AppResource.Name}" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction Command="{Binding UserSelectedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>
+        <mah:ProgressRing Grid.Row="1" IsActive="{Binding IsLoading}" />
+    </Grid>
+</UserControl>

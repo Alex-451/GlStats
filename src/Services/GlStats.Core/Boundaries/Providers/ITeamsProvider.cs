@@ -6,6 +6,8 @@ public interface ITeamsProvider
 {
     IEnumerable<Team> GetTeams();
 
+    Team GetTeamById(int id);
+
     int AddTeam(Team team);
 
     bool UpdateTeam(int id, Team team);

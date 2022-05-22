@@ -2,7 +2,8 @@
 
 namespace GlStats.Core.Boundaries.Providers;
 
-public interface ICurrentUserProvider
+public interface IGitLabProvider
 {
     Task<CurrentUser> GetCurrentUserAsync();
+    Task<IEnumerable<User>> SearchUsersAsync(string search);
 }

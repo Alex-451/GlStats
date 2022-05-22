@@ -1,4 +1,5 @@
 ﻿using GlStats.Core.Boundaries.Infrastructure;
+using GlStats.Wpf.Utilities;
 using GlStats.Wpf.Views;
 using Prism.Regions;
 
@@ -24,12 +25,12 @@ namespace GlStats.Wpf.ViewModels
             if (string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabUrl) ||
                 string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabToken))
             {
-                _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(RegistrationControl), UriKind.Relative));
+                _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(RegistrationControl), UriKind.Relative));
             }
             else
             {
-                _regionManager.RequestNavigate("NavRegion", new Uri(nameof(NavigationControl), UriKind.Relative));
-                _regionManager.RequestNavigate("ContentRegion", new Uri(nameof(StatisticsControl), UriKind.Relative));
+                _regionManager.RequestNavigate(RegionNames.NavRegion, new Uri(nameof(NavigationControl), UriKind.Relative));
+                _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(StatisticsControl), UriKind.Relative));
             }
         }
     }
