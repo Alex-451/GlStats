@@ -61,6 +61,27 @@ public class GitLabProvider : IGitLabProvider
         }
     }
 
+    public async Task<IEnumerable<User>> GetUsersByIdsAsync(string[] ids)
+    {
+        if (!_client.IsAuthenticated())
+            throw new InvalidConfigException();
+
+        try
+        {
+            var users = await _client.GetUsersByIdAsync(ids);
+            return users.Select(ToUser);
+        }
+        catch (InvalidOperationException)
+        {
+            throw new InvalidConfigException();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw new NoConnectionException();
+        }
+    }
+
     private CurrentUser ToCurrentUser(CurrentUserResponse response)
     {
         return new()

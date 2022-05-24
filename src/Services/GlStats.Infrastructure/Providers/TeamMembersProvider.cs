@@ -43,6 +43,19 @@ public class TeamMembersProvider : ITeamMembersProvider
         }
     }
 
+    public int RemoveMemberFromTeam(int teamId, string gitLabUserId)
+    {
+        try
+        {
+            return _unitOfWork.TeamMemberRepository.RemoveFromTeam(teamId, gitLabUserId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw new NoDatabaseConnection();
+        }
+    }
+
     private TeamMember ToTeamMember(DataAccess.Entities.TeamMember response)
     {
         return new TeamMember

@@ -7,7 +7,7 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  prism:ViewModelLocator.AutoWireViewModel="True"
                  mah:DialogParticipation.Register="{Binding }"
-                 Title="GitLab Statistics">
+                 Title="Gl-Statistics">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <prism:InvokeCommandAction Command="{Binding RegisterInitViewCommand}"/>

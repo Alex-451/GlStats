@@ -8,9 +8,9 @@
     <Grid>
         <Menu Background="Transparent">
             <MenuItem Header="{x:Static p:AppResource.Statistics}"/>
-            <MenuItem Header="{x:Static p:AppResource.Teams}" Command="{Binding OpenTeamsControlCommand}"/>
+            <MenuItem Header="{x:Static p:AppResource.Teams}" Command="{Binding OpenTeamsCommand}"/>
             <MenuItem Header="{x:Static p:AppResource.Help}">
-                <MenuItem Header="{x:Static p:AppResource.Settings}">
+                <MenuItem Header="{x:Static p:AppResource.Settings}" Command="{Binding OpenSettingsCommand}">
                     <MenuItem.Icon>
                         <iconPacks:PackIconBootstrapIcons Kind="Gear" />
                     </MenuItem.Icon>

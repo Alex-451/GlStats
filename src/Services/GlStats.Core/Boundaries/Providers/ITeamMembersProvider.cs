@@ -8,4 +8,6 @@ public interface ITeamMembersProvider
 
     int AddMemberToTeam(int teamId, string userId);
 
+    int RemoveMemberFromTeam(int teamId, string gitLabUserId);
+
 }

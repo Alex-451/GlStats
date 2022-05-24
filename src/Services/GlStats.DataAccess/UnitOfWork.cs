@@ -18,9 +18,7 @@ public class UnitOfWork : IUnitOfWork
 
         TeamRepository = teamRepository;
         TeamMemberRepository = teamMemberRepository;
-
     }
-
 
     public void Commit(bool dryRun = false)
     {

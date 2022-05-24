@@ -22,9 +22,9 @@ public class TeamMemberRepository : ITeamMemberRepository
         return result;
     }
 
-    public void RemoveFromTeam(int teamId, string gitLabUserId)
+    public int RemoveFromTeam(int teamId, string gitLabUserId)
     {
-        _col.DeleteMany(x => x.TeamId == teamId && x.MemberId == gitLabUserId);
+        return _col.DeleteMany(x => x.TeamId == teamId && x.MemberId == gitLabUserId);
     }
 
     public int AddToTeam(int teamId, string gitLabUserId)

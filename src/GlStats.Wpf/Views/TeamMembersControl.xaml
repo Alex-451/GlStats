@@ -7,6 +7,9 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:converters="clr-namespace:GlStats.Wpf.Utilities.Converters"
              prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <converters:GitLabAvatarConverter x:Key="AvatarConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,27 +24,10 @@
 
         <Grid Grid.Row="1" Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox  Grid.Column="0"
-                      mah:TextBoxHelper.ClearTextButton="True"
-                      mah:TextBoxHelper.UseFloatingWatermark="True"
-                      mah:TextBoxHelper.Watermark="{x:Static p:AppResource.Search}">
-                <TextBox.Style>
-                    <Style BasedOn="{StaticResource MahApps.Styles.TextBox.Search}" TargetType="{x:Type TextBox}">
-                        <Style.Triggers>
-                            <Trigger Property="mah:TextBoxHelper.HasText" Value="True">
-                                <Setter Property="mah:TextBoxHelper.ButtonContent" Value="r" />
-                                <Setter Property="mah:TextBoxHelper.ButtonContentTemplate" Value="{x:Null}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
-
-            <Button Command="{Binding AddMemberCommand}" Grid.Column="1" Margin="5,0,0,0">
+            <Button Command="{Binding AddMemberCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconBootstrapIcons Kind="PlusSquare" VerticalAlignment="Center"/>
@@ -49,12 +35,44 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+
         </Grid>
+
 
 
         <DataGrid x:Name="Grid" ItemsSource="{Binding TeamMembers}" AutoGenerateColumns="False" Grid.Row="2" CanUserAddRows="False" DataContext="{Binding .}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding MemberId}"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Ellipse Height="25" Width="25">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding AvatarUrl, Converter={StaticResource AvatarConverter}}" Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static p:AppResource.Username}" Binding="{Binding Username}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="{x:Static p:AppResource.Name}" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+
+                <DataGridTemplateColumn Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="0,0,5,0"
+                                        Command="{Binding DataContext.RemoveMemberCommand, ElementName=Grid}"
+                                        CommandParameter="{Binding .}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconPacks:PackIconBootstrapIcons Kind="PersonDash" VerticalAlignment="Center"/>
+                                        <Label Content="{x:Static p:AppResource.RemoveMember}"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

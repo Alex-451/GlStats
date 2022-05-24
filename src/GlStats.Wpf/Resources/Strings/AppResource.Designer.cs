@@ -88,6 +88,15 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove.
+        /// </summary>
+        public static string AreYouSureYouWantToRemove {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -273,6 +282,24 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string NoUserFoundWithCredentials {
             get {
                 return ResourceManager.GetString("NoUserFoundWithCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove member.
+        /// </summary>
+        public static string RemoveMember {
+            get {
+                return ResourceManager.GetString("RemoveMember", resourceCulture);
             }
         }
         

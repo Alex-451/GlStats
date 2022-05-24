@@ -126,6 +126,9 @@
   <data name="AreYouSureYouWantToDelete" xml:space="preserve">
     <value>Are you sure you want to delete</value>
   </data>
+  <data name="AreYouSureYouWantToRemove" xml:space="preserve">
+    <value>Are you sure you want to remove</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -188,6 +191,12 @@
   </data>
   <data name="NoUserFoundWithCredentials" xml:space="preserve">
     <value>No user was found with the provided credentials.</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveMember" xml:space="preserve">
+    <value>Remove member</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

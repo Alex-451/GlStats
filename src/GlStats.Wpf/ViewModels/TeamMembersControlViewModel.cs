@@ -4,9 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Resources;
 using GlStats.Core.Boundaries.UseCases.AddMemberToTeam;
 using GlStats.Core.Boundaries.UseCases.GetMembersOfTeam;
 using GlStats.Core.Boundaries.UseCases.GetTeamById;
+using GlStats.Core.Boundaries.UseCases.GetUsersById;
+using GlStats.Core.Boundaries.UseCases.RemoveTeamMember;
 using GlStats.Core.Entities;
 using GlStats.Wpf.Presenters;
 using GlStats.Wpf.Utilities.CustomDialogs.GitLabUserDialog;
@@ -27,9 +30,18 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
     private readonly IAddMemberToTeamUseCase _addMemberToTeamUseCase;
     private readonly AddMemberToTeamPresenter _addMemberToTeamOutput;
 
-    public DelegateCommand AddMemberCommand { get; private set; }
+    private readonly IGetUsersByIdsUseCase _getUsersByIdsUseCase;
+    private readonly GetUsersByIdsPresenter _getUsersByIdsOutput;
 
-    public TeamMembersControlViewModel(IGetTeamByIdUseCase getTeamByIdUseCase, IGetTeamByIdOutputPort getTeamByIdOutput, IGetMembersOfTeamUseCase getMembersOfTeamUseCase, IGetMembersOfTeamOutputPort getMembersOfTeamOutput, IAddMemberToTeamUseCase addMemberToTeamUse, IAddMemberToTeamOutputPort addMemberToTeamOutput)
+    private readonly IRemoveTeamMemberUseCase _removeTeamMemberUseCase;
+    private readonly RemoveTeamMemberPresenter _removeTeamMemberOutput;
+
+    private readonly ResourceManager _resourceManager;
+
+    public DelegateCommand AddMemberCommand { get; private set; }
+    public DelegateCommand<User> RemoveMemberCommand { get; private set; }
+
+    public TeamMembersControlViewModel(IGetTeamByIdUseCase getTeamByIdUseCase, IGetTeamByIdOutputPort getTeamByIdOutput, IGetMembersOfTeamUseCase getMembersOfTeamUseCase, IGetMembersOfTeamOutputPort getMembersOfTeamOutput, IAddMemberToTeamUseCase addMemberToTeamUse, IAddMemberToTeamOutputPort addMemberToTeamOutput, IGetUsersByIdsUseCase getUsersByIdsUseCase, IGetUsersByIdsOutputPort getUsersByIdsOutput, IRemoveTeamMemberUseCase removeTeamMemberUseCase, IRemoveTeamMemberOutputPort removeTeamMemberOutput, ResourceManager resourceManager)
     {
         _getTeamByIdUseCase = getTeamByIdUseCase;
         _getTeamByIdOutput = (GetTeamByIdPresenter)getTeamByIdOutput;
@@ -40,21 +52,53 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
         _addMemberToTeamUseCase = addMemberToTeamUse;
         _addMemberToTeamOutput = (AddMemberToTeamPresenter)addMemberToTeamOutput;
 
-        TeamMembers = new ObservableCollection<TeamMember>();
+        _getUsersByIdsUseCase = getUsersByIdsUseCase;
+        _getUsersByIdsOutput = (GetUsersByIdsPresenter)getUsersByIdsOutput;
+
+        _removeTeamMemberUseCase = removeTeamMemberUseCase;
+        _removeTeamMemberOutput = (RemoveTeamMemberPresenter) removeTeamMemberOutput;
+
+        _resourceManager = resourceManager;
+
+        TeamMembers = new ObservableCollection<User>();
 
         AddMemberCommand = new DelegateCommand(AddMember);
+        RemoveMemberCommand = new DelegateCommand<User>(RemoveMember);
     }
 
     async void AddMember()
     {
         var metroWindow = (Application.Current.MainWindow as MetroWindow);
 
-        var customDialog = new CustomDialog { Title = "test", };
+        var customDialog = new CustomDialog { Title = $"{_resourceManager.GetString("AddMember")} to {Team.Name}" };
         customDialog.Content = new GitLabUserDialog();
 
         await metroWindow.ShowMetroDialogAsync(customDialog);
         GitLabUserDialogViewModel.Dialog = customDialog;
         GitLabUserDialogViewModel.ReturnHander = () => { UserSelected(); };
+    }
+
+    async void RemoveMember(User user)
+    {
+        if (!string.IsNullOrWhiteSpace(user.Id))
+        {
+            var metroWindow = (Application.Current.MainWindow as MetroWindow);
+            var dialogSettings = new MetroDialogSettings
+            {
+                AffirmativeButtonText = _resourceManager.GetString("Remove"),
+                NegativeButtonText = _resourceManager.GetString("Cancel"),
+
+            };
+            var result = await metroWindow.ShowMessageAsync(_resourceManager.GetString("RemoveMember"), _resourceManager.GetString("AreYouSureYouWantToRemove") + $" {user.Name} from {Team.Name}?", style: MessageDialogStyle.AffirmativeAndNegative, settings: dialogSettings);
+
+            if (result == MessageDialogResult.Affirmative)
+            {
+                _removeTeamMemberUseCase.Execute(Team.Id, user.Id);
+
+                if (_removeTeamMemberOutput.RemovedMember)
+                    TeamMembers.Remove(TeamMembers.Single(x => x.Id == user.Id));
+            }
+        }
     }
 
     void UserSelected()
@@ -90,13 +134,26 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
         }
     }
 
-    private void RefreshCollection()
+    private async void RefreshCollection()
     {
         _getMembersOfTeamUseCase.Execute(Team.Id);
         TeamMembers.Clear();
+
+        List<string> ids = new List<string>();
         foreach (var teamMember in _getMembersOfTeamOutput.TeamMembers)
         {
-            TeamMembers.Add(teamMember);
+            ids.Add(teamMember.MemberId);
+        }
+
+
+        if (ids.Count > 0)
+        {
+            await _getUsersByIdsUseCase.ExecuteAsync(ids.ToArray());
+
+            foreach (var user in _getUsersByIdsOutput.Users)
+            {
+                TeamMembers.Add(user);
+            }
         }
     }
 
@@ -107,9 +164,9 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
         set => SetProperty(ref _team, value);
     }
 
-    private IList<TeamMember> _teamMembers;
+    private IList<User> _teamMembers;
 
-    public IList<TeamMember> TeamMembers
+    public IList<User> TeamMembers
     {
         get => _teamMembers;
         set => SetProperty(ref _teamMembers, value);

@@ -13,6 +13,7 @@
     <Folder Include="Boundaries\UseCases\GetTeamById\" />
     <Folder Include="Boundaries\UseCases\GetMembersOfTeam\" />
     <Folder Include="Boundaries\UseCases\AddMemberToTeam\" />
+    <Folder Include="Boundaries\UseCases\RemoveTeamMember\" />
     <Folder Include="Boundaries\UseCases\SearchUsers\" />
     <Folder Include="Boundaries\UseCases\UpdateTeam\" />
     <Folder Include="Entities\Exceptions\" />

@@ -11,6 +11,8 @@ using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Core.Boundaries.UseCases.GetMembersOfTeam;
 using GlStats.Core.Boundaries.UseCases.GetTeamById;
 using GlStats.Core.Boundaries.UseCases.GetTeams;
+using GlStats.Core.Boundaries.UseCases.GetUsersById;
+using GlStats.Core.Boundaries.UseCases.RemoveTeamMember;
 using GlStats.Core.Boundaries.UseCases.SearchUsers;
 using GlStats.Core.Boundaries.UseCases.UpdateTeam;
 using GlStats.Core.UseCases;
@@ -63,6 +65,7 @@ public partial class App : PrismApplication
         containerRegistry.RegisterForNavigation(typeof(StatisticsControl), nameof(StatisticsControl));
         containerRegistry.RegisterForNavigation(typeof(TeamOverviewControl), nameof(TeamOverviewControl));
         containerRegistry.RegisterForNavigation(typeof(TeamMembersControl), nameof(TeamMembersControl));
+        containerRegistry.RegisterForNavigation(typeof(SettingsControl), nameof(SettingsControl));
 
         #endregion
 
@@ -71,6 +74,7 @@ public partial class App : PrismApplication
         containerRegistry.Register<IGitLabProvider, GitLabProvider>();
         containerRegistry.Register<IGetCurrentUserUseCase, GetCurrentUserUseCase>();
         containerRegistry.Register<ISearchUsersUseCase, SearchUsersUseCase>();
+        containerRegistry.Register<IGetUsersByIdsUseCase, GetUsersByIdsUseCase>();
 
         containerRegistry.Register<ITeamsProvider, TeamsProvider>();
         containerRegistry.Register<IGetTeamsUseCase, GetTeamsUseCase>();
@@ -82,6 +86,8 @@ public partial class App : PrismApplication
         containerRegistry.Register<ITeamMembersProvider, TeamMembersProvider>();
         containerRegistry.Register<IGetMembersOfTeamUseCase, GetMembersOfTeamUseCase>();
         containerRegistry.Register<IAddMemberToTeamUseCase, AddMemberToTeamUseCase>();
+        containerRegistry.Register<IRemoveTeamMemberUseCase, RemoveTeamMemberUseCase>();
+
 
 
         #endregion
@@ -90,6 +96,7 @@ public partial class App : PrismApplication
 
         containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
         containerRegistry.RegisterSingleton<ISearchUsersOutputPort, SearchUsersPresenter>();
+        containerRegistry.RegisterSingleton<IGetUsersByIdsOutputPort, GetUsersByIdsPresenter>();
 
         containerRegistry.RegisterSingleton<IGetTeamsOutputPort, GetTeamsPresenter>();
         containerRegistry.RegisterSingleton<IGetTeamByIdOutputPort, GetTeamByIdPresenter>();
@@ -99,6 +106,7 @@ public partial class App : PrismApplication
 
         containerRegistry.RegisterSingleton<IGetMembersOfTeamOutputPort, GetMembersOfTeamPresenter>();
         containerRegistry.RegisterSingleton<IAddMemberToTeamOutputPort, AddMemberToTeamPresenter>();
+        containerRegistry.RegisterSingleton<IRemoveTeamMemberOutputPort, RemoveTeamMemberPresenter>();
 
         #endregion
 

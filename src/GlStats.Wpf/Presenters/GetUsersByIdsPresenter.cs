@@ -1,12 +1,12 @@
 ﻿using System.Resources;
-using GlStats.Core.Boundaries.UseCases.SearchUsers;
+using GlStats.Core.Boundaries.UseCases.GetUsersById;
 using GlStats.Core.Entities;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace GlStats.Wpf.Presenters;
 
-public class SearchUsersPresenter : ISearchUsersOutputPort
+public class GetUsersByIdsPresenter : IGetUsersByIdsOutputPort
 {
     public bool HasConnection = true;
     public bool HasValidConfig = true;
@@ -15,7 +15,7 @@ public class SearchUsersPresenter : ISearchUsersOutputPort
 
     private readonly ResourceManager _resourceManager;
 
-    public SearchUsersPresenter(ResourceManager resourceManager)
+    public GetUsersByIdsPresenter(ResourceManager resourceManager)
     {
         _resourceManager = resourceManager;
 
