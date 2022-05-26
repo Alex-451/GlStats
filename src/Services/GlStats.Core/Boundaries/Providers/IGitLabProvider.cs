@@ -7,4 +7,5 @@ public interface IGitLabProvider
     Task<CurrentUser> GetCurrentUserAsync();
     Task<IEnumerable<User>> SearchUsersAsync(string search);
     Task<IEnumerable<User>> GetUsersByIdsAsync(string[] ids);
+    Task<IEnumerable<Project>> GetProjectsAsync(ProjectSearchOptions options);
 }

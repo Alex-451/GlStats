@@ -1,4 +1,5 @@
 ﻿using GlStats.ApiWrapper.Entities.Api;
+using GlStats.ApiWrapper.Entities.Requests;
 
 namespace GlStats.ApiWrapper;
 
@@ -11,6 +12,8 @@ public interface IGitLabClient
     Task<UserResponse> GetUserByIdAsync(string id);
 
     Task<IEnumerable<UserResponse>> GetUsersByIdAsync(string[] ids);
+
+    Task<IEnumerable<ProjectResponse>> GetProjectsAsync(ProjectQueryOptions options);
 
     bool IsAuthenticated();
 }

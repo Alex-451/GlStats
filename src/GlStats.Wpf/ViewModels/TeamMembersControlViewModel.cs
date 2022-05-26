@@ -60,6 +60,7 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
 
         _resourceManager = resourceManager;
 
+        IsLoadingTeamMembers = false;
         TeamMembers = new ObservableCollection<User>();
 
         AddMemberCommand = new DelegateCommand(AddMember);
@@ -136,24 +137,33 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
 
     private async void RefreshCollection()
     {
-        _getMembersOfTeamUseCase.Execute(Team.Id);
-        TeamMembers.Clear();
-
-        List<string> ids = new List<string>();
-        foreach (var teamMember in _getMembersOfTeamOutput.TeamMembers)
+        try
         {
-            ids.Add(teamMember.MemberId);
-        }
+            IsLoadingTeamMembers = true;
 
+            _getMembersOfTeamUseCase.Execute(Team.Id);
+            TeamMembers.Clear();
 
-        if (ids.Count > 0)
-        {
-            await _getUsersByIdsUseCase.ExecuteAsync(ids.ToArray());
-
-            foreach (var user in _getUsersByIdsOutput.Users)
+            List<string> ids = new List<string>();
+            foreach (var teamMember in _getMembersOfTeamOutput.TeamMembers)
             {
-                TeamMembers.Add(user);
+                ids.Add(teamMember.MemberId);
             }
+
+
+            if (ids.Count > 0)
+            {
+                await _getUsersByIdsUseCase.ExecuteAsync(ids.ToArray());
+
+                foreach (var user in _getUsersByIdsOutput.Users)
+                {
+                    TeamMembers.Add(user);
+                }
+            }
+        }
+        finally
+        {
+            IsLoadingTeamMembers = false;
         }
     }
 
@@ -165,10 +175,16 @@ public class TeamMembersControlViewModel : BindableBase, INavigationAware
     }
 
     private IList<User> _teamMembers;
-
     public IList<User> TeamMembers
     {
         get => _teamMembers;
         set => SetProperty(ref _teamMembers, value);
+    }
+
+    private bool _isLoadingTeamMembers;
+    public bool IsLoadingTeamMembers
+    {
+        get => _isLoadingTeamMembers;
+        set => SetProperty(ref _isLoadingTeamMembers, value);
     }
 }

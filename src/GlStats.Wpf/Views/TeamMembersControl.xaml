@@ -72,8 +72,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
+        <mah:ProgressRing Grid.Row="2" IsActive="{Binding IsLoadingTeamMembers}" />
     </Grid>
 </UserControl>

@@ -21,5 +21,6 @@ public class Network : INetwork
 
         var response = await _client.PostAsync(url, new StringContent(body, Encoding.UTF8, "application/json"));
         return await response.Content.ReadAsStringAsync();
+
     }
 }

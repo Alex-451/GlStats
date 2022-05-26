@@ -11,4 +11,5 @@ public class Config
     public string GitLabUrl { get; set; } = string.Empty;
     public string GitLabToken { get; set; } = string.Empty;
     public string ConnectionString { get; set; } = string.Empty;
+    public string CurrentCulture { get; set; } = "en-UK";
 }

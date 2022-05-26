@@ -9,6 +9,7 @@ using GlStats.Core.Boundaries.UseCases.AddTeam;
 using GlStats.Core.Boundaries.UseCases.DeleteTeam;
 using GlStats.Core.Boundaries.UseCases.GetCurrentUser;
 using GlStats.Core.Boundaries.UseCases.GetMembersOfTeam;
+using GlStats.Core.Boundaries.UseCases.GetProjects;
 using GlStats.Core.Boundaries.UseCases.GetTeamById;
 using GlStats.Core.Boundaries.UseCases.GetTeams;
 using GlStats.Core.Boundaries.UseCases.GetUsersById;
@@ -62,7 +63,7 @@ public partial class App : PrismApplication
 
         containerRegistry.RegisterForNavigation(typeof(NavigationControl), nameof(NavigationControl));
         containerRegistry.RegisterForNavigation(typeof(RegistrationControl), nameof(RegistrationControl));
-        containerRegistry.RegisterForNavigation(typeof(StatisticsControl), nameof(StatisticsControl));
+        containerRegistry.RegisterForNavigation(typeof(ProjectsControl), nameof(ProjectsControl));
         containerRegistry.RegisterForNavigation(typeof(TeamOverviewControl), nameof(TeamOverviewControl));
         containerRegistry.RegisterForNavigation(typeof(TeamMembersControl), nameof(TeamMembersControl));
         containerRegistry.RegisterForNavigation(typeof(SettingsControl), nameof(SettingsControl));
@@ -75,6 +76,7 @@ public partial class App : PrismApplication
         containerRegistry.Register<IGetCurrentUserUseCase, GetCurrentUserUseCase>();
         containerRegistry.Register<ISearchUsersUseCase, SearchUsersUseCase>();
         containerRegistry.Register<IGetUsersByIdsUseCase, GetUsersByIdsUseCase>();
+        containerRegistry.Register<IGetProjectsUseCase, GetProjectsUseCase>();
 
         containerRegistry.Register<ITeamsProvider, TeamsProvider>();
         containerRegistry.Register<IGetTeamsUseCase, GetTeamsUseCase>();
@@ -97,6 +99,7 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IGetCurrentUserOutputPort, CurrentUserPresenter>();
         containerRegistry.RegisterSingleton<ISearchUsersOutputPort, SearchUsersPresenter>();
         containerRegistry.RegisterSingleton<IGetUsersByIdsOutputPort, GetUsersByIdsPresenter>();
+        containerRegistry.RegisterSingleton<IGetProjectsOutputPort, GetProjectsPresenter>();
 
         containerRegistry.RegisterSingleton<IGetTeamsOutputPort, GetTeamsPresenter>();
         containerRegistry.RegisterSingleton<IGetTeamByIdOutputPort, GetTeamByIdPresenter>();

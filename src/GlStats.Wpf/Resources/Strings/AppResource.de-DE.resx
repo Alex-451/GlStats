@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddMember" xml:space="preserve">
-    <value>Add member</value>
+    <value>Mitglied hinzufügen</value>
   </data>
   <data name="AddTeam" xml:space="preserve">
-    <value>Add Team</value>
+    <value>Team hinzufügen</value>
   </data>
   <data name="AreYouSureYouWantToDelete" xml:space="preserve">
     <value>Are you sure you want to delete</value>
@@ -130,43 +130,43 @@
     <value>Are you sure you want to remove</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abrechen</value>
   </data>
   <data name="ConfigContainsError" xml:space="preserve">
-    <value>The provided configuration might contain errors.</value>
+    <value>Die angegebene Konfiguration enthält vielleicht Fehler.</value>
   </data>
   <data name="Continue" xml:space="preserve">
-    <value>Continue</value>
+    <value>Weiter</value>
   </data>
   <data name="CouldntFindUser" xml:space="preserve">
-    <value>Couldn't find user</value>
+    <value>Benutzer konnte nicht gefunden werden</value>
   </data>
   <data name="CreationDate" xml:space="preserve">
-    <value>Creation date</value>
+    <value>Erstellungsdatum</value>
   </data>
   <data name="Database" xml:space="preserve">
-    <value>Database</value>
+    <value>Datenbank</value>
   </data>
   <data name="DatabaseConnectionError" xml:space="preserve">
-    <value>Couldn't connect to the database. Check the database configuration.</value>
+    <value>Es konnte keine Verbindung mit der Datenbank aufgebaut werden. Kontrollieren sie die Datenbank Konfiguration.</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Löschen</value>
   </data>
   <data name="DeleteTeam" xml:space="preserve">
-    <value>Delete team</value>
+    <value>Team löschen</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>Englisch</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportieren</value>
   </data>
   <data name="German" xml:space="preserve">
-    <value>German</value>
+    <value>Deutsch</value>
   </data>
   <data name="GitLabAccessToken" xml:space="preserve">
     <value>GitLab access token</value>
@@ -178,31 +178,31 @@
     <value>GitLab server URL</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Hilfe</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importieren</value>
   </data>
   <data name="InvalidConfig" xml:space="preserve">
-    <value>Invalid configuration</value>
+    <value>Unzulässige Konfiguration</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="ManageMembers" xml:space="preserve">
-    <value>Manage members</value>
+    <value>Mitglieder verwalten</value>
   </data>
   <data name="Members" xml:space="preserve">
-    <value>Members</value>
+    <value>Mitglieder</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="NoConnection" xml:space="preserve">
-    <value>No connection</value>
+    <value>Keine Verbindung</value>
   </data>
   <data name="NoDatabaseConnection" xml:space="preserve">
-    <value>No database connection</value>
+    <value>Keine Datenbankverbindung</value>
   </data>
   <data name="NoInternetConnection" xml:space="preserve">
     <value>There seems to be no internet connection or the host does not respond.</value>
@@ -211,34 +211,34 @@
     <value>No user was found with the provided credentials.</value>
   </data>
   <data name="Projects" xml:space="preserve">
-    <value>Projects</value>
+    <value>Projekte</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Entfernen</value>
   </data>
   <data name="RemoveMember" xml:space="preserve">
-    <value>Remove member</value>
+    <value>Mitglied entfernen</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Suchen</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistiken</value>
   </data>
   <data name="SuccessfullyCreatedTeam" xml:space="preserve">
-    <value>The team was successfully created.</value>
+    <value>Das Team wurde erfolgreich erstellt.</value>
   </data>
   <data name="TeamAdded" xml:space="preserve">
-    <value>Team added</value>
+    <value>Team hinzugefügt</value>
   </data>
   <data name="TeamConfiguration" xml:space="preserve">
-    <value>Team configuration</value>
+    <value>Team Konfiguration</value>
   </data>
   <data name="TeamName" xml:space="preserve">
     <value>Team name</value>
@@ -247,6 +247,6 @@
     <value>Teams</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Benutzername</value>
   </data>
 </root>

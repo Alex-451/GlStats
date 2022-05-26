@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\Requests\" />
+    <Folder Include="Entities\Responses\Projects\" />
     <Folder Include="Entities\Responses\User\" />
   </ItemGroup>
 

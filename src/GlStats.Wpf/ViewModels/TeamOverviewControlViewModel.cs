@@ -82,6 +82,7 @@ namespace GlStats.Wpf.ViewModels
         {
             var metroWindow = (Application.Current.MainWindow as MetroWindow);
             var result = await metroWindow.ShowInputAsync(_resourceManager.GetString("TeamConfiguration"), _resourceManager.GetString("Name"));
+
             if (!string.IsNullOrWhiteSpace(result))
             {
                 _addTeamUseCase.Execute(new Team { Name = result });

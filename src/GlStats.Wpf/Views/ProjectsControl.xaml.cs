@@ -3,11 +3,11 @@
 namespace GlStats.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for StatisticsControl
+    /// Interaction logic for ProjectsControl
     /// </summary>
-    public partial class StatisticsControl : UserControl
+    public partial class ProjectsControl : UserControl
     {
-        public StatisticsControl()
+        public ProjectsControl()
         {
             InitializeComponent();
         }

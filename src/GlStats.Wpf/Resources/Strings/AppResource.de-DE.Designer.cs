@@ -22,14 +22,14 @@ namespace GlStats.Wpf.Resources.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AppResource {
+    public class AppResource___Copy {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResource() {
+        internal AppResource___Copy() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace GlStats.Wpf.Resources.Strings {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GlStats.Wpf.Resources.Strings.AppResource", typeof(AppResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GlStats.Wpf.Resources.Strings.AppResource - Copy", typeof(AppResource___Copy).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -187,29 +187,11 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English.
-        /// </summary>
-        public static string English {
-            get {
-                return ResourceManager.GetString("English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to German.
-        /// </summary>
-        public static string German {
-            get {
-                return ResourceManager.GetString("German", resourceCulture);
             }
         }
         
@@ -336,15 +318,6 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string NoUserFoundWithCredentials {
             get {
                 return ResourceManager.GetString("NoUserFoundWithCredentials", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Projects.
-        /// </summary>
-        public static string Projects {
-            get {
-                return ResourceManager.GetString("Projects", resourceCulture);
             }
         }
         

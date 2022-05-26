@@ -22,6 +22,8 @@ namespace GlStats.Wpf.ViewModels
 
         private void RegisterInitialView()
         {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(_auth.GetConfig().CurrentCulture);
+
             if (string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabUrl) ||
                 string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabToken))
             {
@@ -30,7 +32,7 @@ namespace GlStats.Wpf.ViewModels
             else
             {
                 _regionManager.RequestNavigate(RegionNames.NavRegion, new Uri(nameof(NavigationControl), UriKind.Relative));
-                _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(StatisticsControl), UriKind.Relative));
+                _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(ProjectsControl), UriKind.Relative));
             }
         }
     }

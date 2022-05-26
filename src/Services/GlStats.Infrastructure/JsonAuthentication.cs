@@ -24,4 +24,11 @@ public class JsonAuthentication : IAuthentication
         config.GitLabToken = apiKey;
         _config.StoreConfig(config);
     }
+
+    public void UpdateSettings(string cultureName)
+    {
+        var config = _config.GetConfig();
+        config.CurrentCulture = cultureName;
+        _config.StoreConfig(config);
+    }
 }

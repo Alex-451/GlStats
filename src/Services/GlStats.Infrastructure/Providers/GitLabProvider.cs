@@ -1,5 +1,6 @@
 ﻿using GlStats.ApiWrapper;
 using GlStats.ApiWrapper.Entities.Api;
+using GlStats.ApiWrapper.Entities.Requests;
 using GlStats.Core.Boundaries.Providers;
 using GlStats.Core.Entities;
 using GlStats.Core.Entities.Exceptions;
@@ -82,6 +83,27 @@ public class GitLabProvider : IGitLabProvider
         }
     }
 
+    public async Task<IEnumerable<Project>> GetProjectsAsync(ProjectSearchOptions options)
+    {
+        if (!_client.IsAuthenticated())
+            throw new InvalidConfigException();
+
+        try
+        {
+            var projects = await _client.GetProjectsAsync(new ProjectQueryOptions(options));
+            return projects.Select(ToProject);
+        }
+        catch (InvalidOperationException)
+        {
+            throw new InvalidConfigException();
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine(e);
+            throw new NoConnectionException();
+        }
+    }
+
     private CurrentUser ToCurrentUser(CurrentUserResponse response)
     {
         return new()
@@ -100,6 +122,18 @@ public class GitLabProvider : IGitLabProvider
             Username = response.Username,
             Name = response.Name,
             PublicEmail = response.PublicEmail,
+        };
+    }
+
+    private Project ToProject(ProjectResponse response)
+    {
+        return new()
+        {
+            Id = response.Id,
+            Name = response.Name,
+            AvatarUrl = response.AvatarUrl,
+            Description = response.Description,
+            WebUrl = response.WebUrl,
         };
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
 using GlStats.ApiWrapper.Entities.Api;
+using GlStats.ApiWrapper.Entities.Requests;
 using GlStats.ApiWrapper.Entities.Responses;
+using GlStats.ApiWrapper.Entities.Responses.Projects;
 using GlStats.ApiWrapper.Entities.Responses.User;
 using GlStats.ApiWrapper.Entities.Responses.Users;
 using GlStats.Core.Boundaries.Infrastructure;
@@ -41,6 +43,12 @@ public class GitLabClient : IGitLabClient
     {
         var users = await GetUsersByIdResponseAsync(ids);
         return users.Data.Users.Nodes;
+    }
+
+    public async Task<IEnumerable<ProjectResponse>> GetProjectsAsync(ProjectQueryOptions options)
+    {
+        var projects = await GetProjectsResponseAsync(options);
+        return projects.Data.Projects.Nodes;
     }
 
     private async Task<DataResponse<CurrentUserDataResponse>> GetCurrentUserResponseAsync()
@@ -130,6 +138,36 @@ public class GitLabClient : IGitLabClient
         string json = await _network.PostAsync($@"{_auth.GetConfig().GitLabUrl}/api/graphql/", _auth.GetConfig().GitLabToken, query);
         return JsonSerializer.Deserialize<DataResponse<UsersDataResponse>>(json, new JsonSerializerOptions(JsonSerializerDefaults.Web));
     }
+
+    private async Task<DataResponse<ProjectsDataResponse>> GetProjectsResponseAsync(ProjectQueryOptions options)
+    {
+        var queryObject = new
+        {
+            query = @$"{{
+              projects(before: ""{options.Before}"" after: ""{options.After}"" search: ""{options.Search}"") {{
+                pageInfo {{
+                  hasNextPage
+                  endCursor
+                  hasPreviousPage
+                  startCursor
+                }}
+                nodes {{
+                  id
+                  name
+                  avatarUrl
+                  description
+                  webUrl
+                }}
+              }}
+            }}"
+        };
+
+        var query = JsonSerializer.Serialize(queryObject);
+
+        string json = await _network.PostAsync($@"{_auth.GetConfig().GitLabUrl}/api/graphql/", _auth.GetConfig().GitLabToken, query);
+        return JsonSerializer.Deserialize<DataResponse<ProjectsDataResponse>>(json, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+    }
+
 
     public bool IsAuthenticated() => !string.IsNullOrWhiteSpace(_auth.GetConfig().GitLabToken);
 }

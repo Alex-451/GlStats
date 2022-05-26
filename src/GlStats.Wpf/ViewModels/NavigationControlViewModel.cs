@@ -8,6 +8,7 @@ public class NavigationControlViewModel : BindableBase
 {
     private readonly IRegionManager _regionManager;
 
+    public DelegateCommand OpenProjectsCommand { get; private set; }
     public DelegateCommand OpenTeamsCommand { get; private set; }
     public DelegateCommand OpenSettingsCommand { get; private set; }
 
@@ -15,8 +16,14 @@ public class NavigationControlViewModel : BindableBase
     {
         _regionManager = regionManager;
 
+        OpenProjectsCommand = new DelegateCommand(OpenProjects);
         OpenTeamsCommand = new DelegateCommand(OpenTeams);
         OpenSettingsCommand = new DelegateCommand(OpenSettings);
+    }
+
+    void OpenProjects()
+    {
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, new Uri(nameof(ProjectsControl), UriKind.Relative));
     }
 
     void OpenTeams()
