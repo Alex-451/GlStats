@@ -222,11 +222,17 @@
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Einstellungen gespeichert</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Suchen</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
+  </data>
+  <data name="SettingsWillBeAppliedUponRestart" xml:space="preserve">
+    <value>Die Einstellungen werden bei einem Neustart übernommen.</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistiken</value>

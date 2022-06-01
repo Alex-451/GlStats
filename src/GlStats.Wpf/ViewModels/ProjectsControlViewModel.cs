@@ -48,8 +48,8 @@ namespace GlStats.Wpf.ViewModels
 
         private async Task RefreshCollection()
         {
-            await _getProjectsUseCase.ExecuteAsync(new GetProjectsInput());
             Projects.Clear();
+            await _getProjectsUseCase.ExecuteAsync(new GetProjectsInput());
             foreach (var project in _getProjectsOutput.Projects)
             {
                 Projects.Add(project);

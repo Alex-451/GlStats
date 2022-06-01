@@ -8,6 +8,8 @@ using System.Linq;
 using System.Resources;
 using GlStats.Core.Boundaries.Infrastructure;
 using LiteDB;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 
 namespace GlStats.Wpf.ViewModels;
@@ -39,7 +41,7 @@ public class SettingsControlViewModel : BindableBase
         ExportDatabaseCommand = new DelegateCommand(ExportDatabase);
     }
 
-    private void SaveSettings()
+    private async void SaveSettings()
     {
         string cultureName = "en-UK";
         if (SelectedLanguage == _resourceManager.GetString("English"))
@@ -47,6 +49,11 @@ public class SettingsControlViewModel : BindableBase
         else if (SelectedLanguage == _resourceManager.GetString("German"))
             cultureName = "de-DE";
         _auth.UpdateSettings(cultureName);
+
+
+        var metroWindow = (Application.Current.MainWindow as MetroWindow);
+        var result = await metroWindow.ShowMessageAsync(_resourceManager.GetString("Saved"), _resourceManager.GetString("SettingsWillBeAppliedUponRestart"), style: MessageDialogStyle.Affirmative);
+
     }
 
     private string CultureToLanguage(string language)

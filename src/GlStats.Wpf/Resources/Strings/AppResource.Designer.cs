@@ -376,6 +376,15 @@ namespace GlStats.Wpf.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings saved.
+        /// </summary>
+        public static string Saved {
+            get {
+                return ResourceManager.GetString("Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -390,6 +399,15 @@ namespace GlStats.Wpf.Resources.Strings {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The settings will be applied upon restart..
+        /// </summary>
+        public static string SettingsWillBeAppliedUponRestart {
+            get {
+                return ResourceManager.GetString("SettingsWillBeAppliedUponRestart", resourceCulture);
             }
         }
         
